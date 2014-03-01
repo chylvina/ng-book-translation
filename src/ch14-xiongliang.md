@@ -86,4 +86,46 @@ annotate() 函数返回在启动时将被注入的服务的名称数组。
 
 #### get()
 
-get()
+get() 方法接受一个参数并返回服务的实例。
+
+- name (string)
+
+参数 name 是我们希望得到的服务实例名称。
+
+get() 返回 name 指定的服务的实例。
+
+#### has()
+
+has() 方法在被请求的服务已经被注入器注册时返回 true，否则返回 false。它接受一个参数：
+
+- name (string)
+
+name 是被请求的服务的名称。
+
+#### instantiate()
+
+instantiate() 方法创建一个新的 JavaScript 类型的实例。它接受一个构建函数作为参数并
+
+#### invoke()
+
+invoke() 方法将调用一个函数，并将从 $injector 获取到的依赖作为参数传入该函数。
+
+invoke() 方法接受三个参数：
+
+- fn (function)
+
+fn 为将被调用的函数。函数的参数是通过标记的方式设置的。
+
+- self (object - optional)
+
+self 允许我们设置被调用函数的上下文
+
+- locals (object - optional)
+
+这个可选参数为我们提供了另外一种在函数调用时从函数参数名获取依赖的方式。
+
+invoke() 方法返回调用 fn 函数时所返回的结果。
+
+### ngMin
+
+使用上面介绍的三种标记方法
