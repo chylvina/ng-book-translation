@@ -7,3 +7,4 @@
 - injector 注入器
 - constructor 构建函数
 - Abstract Syntax Tree (AST) 抽象语法树
+- look up 追溯
