@@ -31,7 +31,7 @@ angular.module('myApp',[]);
 </code>
 </pre>
 #####Modules
-<img style="display:block;float:left;"src="http://ringtail.u.qiniudn.com/a7cb450a6d11dac070b3f0963bb4a7db.png"/>
+<img style="display:block;float:left;"src="http://ringtail.u.qiniudn.com/ng-book-00"/>
 <p style="padding-top:25px">这个方法是Angular module的<i>setter</i>方法,我们可以通过这种方式定义模块<p>  
 我们也可以通过只传递module名称的方式，用这个方法来引用module，例如我们可以像这样来引用myApp module:  
 <pre>
@@ -40,7 +40,7 @@ angular.module('myApp',[]);
 angular.module('myApp')
 </code>
 </pre>
-<img style="display:block;float:left;"src="http://ringtail.u.qiniudn.com/a7cb450a6d11dac070b3f0963bb4a7db.png"/>
+<img style="display:block;float:left;"src="http://ringtail.u.qiniudn.com/ng-book-00"/>
 <p style="padding-top:25px">这个方法就是所谓的<i>getter</i>方法,我们可以通过这种方式引用模块<p>  
 到目前为止，我们就可以在angular.module('myApp')之上构建我们的应用了。  
 构建大型的应用，我们可能需要创建很多不同的模块来实现复杂的业务逻辑。将不同的业务逻辑进行抽离，封装为不同的module，可以使我们的更容易进行测试。想要获得更多关于如何编写高可用的module,请参考architecture 章节
