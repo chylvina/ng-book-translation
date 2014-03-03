@@ -17,13 +17,16 @@ scope提供了一种能够监听model改变的能力，此外angular提供了一
 <pre>
 <code>
 &lt;div ng-app="myApp"> 
-    &lt;h1>Hello {{ name }}&lt;/h1>&lt;/div>
+    &lt;h1>Hello {{ name }}&lt;/h1>
+&lt;/div>
 </code>
 </pre>
 我们可以猜测到{{name}}变量是在包含此元素的$scope的一个属性
 <pre>
 <code>
-angular.module('myApp', []) .run(function($rootScope) {    $rootScope.name = "World";});
+angular.module('myApp', []) .run(function($rootScope) {
+    $rootScope.name = "World";
+});
 </code>
 </pre>
 <center><img src="http://ringtail.u.qiniudn.com/ng-book-01"/></center>
@@ -53,45 +56,53 @@ scopes是包含功能代码和渲染模板的数据的对象，它是所有的vi
 在之前的例子中，我们在$rootScope中设置了一个变量，然后在view中进行了引用，就像下下面的代码：  
 <pre>
 <code>
-angular.module('myApp', []) .run(function($rootScope) {    $rootScope.name = "World";});
+angular.module('myApp', []) .run(function($rootScope) {
+    $rootScope.name = "World";
+});
 </code>
 </pre>
 现在我们可以在view中使用name这个属性了：
 <pre>
 <code>
 &lt;div ng-app="myApp"> 
-    &lt;h1>Hello {{ name }}&lt;/h1>&lt;/div>
+    &lt;h1>Hello {{ name }}&lt;/h1>
+&lt;/div>
 </code>
 </pre>  
 如果我们不在$rootScope中设置变量，我们可以创建一个controller的方式建立子scope.我们可以通过在一个DOM元素上使用ng-controller directive的方式建立一个controller:  
 <pre>
 <code>
-&lt;div ng-app="myApp">    &lt;div ng-controller="MyController">        &lt;h1>Hello {{ name }}&lt;/h1>
-    &lt;/div>&lt;/div>
+&lt;div ng-app="myApp">
+    &lt;div ng-controller="MyController">
+        &lt;h1>Hello {{ name }}&lt;/h1>
+    &lt;/div>
+&lt;/div>
 </code>
 </pre>
 现在，我们已经创建了一个叫做MyController的controller，从而可以管理变量：
 <pre>
 <code>
-angular.module("myApp", []) .controller('MyController', function($scope) {  $scope.name = "Ari";});
+angular.module("myApp", []) .controller('MyController', function($scope) {
+  $scope.name = "Ari";
+});
 </code>
 </pre>
 ng-controllers dirctive为当前的元素创建了一个新的$scope，而这个作用域在$rootScope之下。  
-###$scope的生命周期
+### $scope的生命周期
 在Angular运行上下文中，当浏览器接收到一个Javascript的回调函数的时候，$scope将会识别出model的变化（想获得更多关于Angular运行上下文的信息，可以查看digest loop章节）  
 <img style="display:block;float:left;"src="http://ringtail.u.qiniudn.com/ng-book-00"/>
 <p style="padding-top:5px">如果回调函数在Angular的上下文之外运行，我们也可以采用$apply方法进行监听变化<p>  
 在scope表达式执行完毕，$disget循环执行之后，$scope的watch方法就会进行脏数据的校检（关于脏数据校检，请查看disget loop章节）  
 <img style="display:block;float:left;"src="http://ringtail.u.qiniudn.com/ng-book-00"/>
 <p style="padding-top:5px">我们将会在Expressions章节中深入学习expressions。在scope中的表示式就是我们设置scope变量的位置。当我们想像上面的代码中设置name属性，我们只需要使用：$scope.name="Ari"<p>    
-###Creation
+### Creation
 当我们创建一个controller或者directive，angular会调用$injector创建一个新的作用域，并在代码运行的时候将这个作用域传递给controller或者dirctive
-###Linking
+### Linking
 当$scope链接到view的时候，由directives创建的scope会自动被父scope监听，任何从view到dirctive的变化都会被监听
 ###Update
 在$digest在$rootScope中执行的时候，所有的子scope都会进行脏数据的校检，一旦有任何的改变都会触发监听注册的表达式。
-###Destruction
+### Destruction
 当一个$scope不在需要的时候，会调用scope.destroy()方法清理其下的所有scope，另外当一个scope被销毁了，$destory时间会被broadcast
-###directives and Scopes
+### directives and Scopes
 Directives会在angluar程序中广泛使用，通常情况下无需创建属于他们自己的作用域，但是这取决于这个directive的用途。例如：ng-controller 和 ng-repeat direcitve 会创建属于他们的子scope，并且将scope绑定到dom元素上。  
 但是在我们学习更多时候，我们需要了解什么是controllers,我们如何在我们的程序中使用。
