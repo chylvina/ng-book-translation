@@ -14,7 +14,7 @@ ch10 Built-In Directives                   | 5      | xintong
 ch11 Directives Explained                  | 25     | wenwen 
 ch12 Angular Module Loading                | 3      | wenwen
 ch13 Multiple Views and Routing            | 13     | shuwei 
-ch14 Dependency Injection                  | 7      | 熊亮
+ch14 Dependency Injection                  | 7      | xiongliang
 ch15 Services                              | 7      | lihui 
 ch16 Communicating with the Outside ...    | 32     |  
 ch17 XHR in Practice                       | 16     | liuqi  
@@ -24,7 +24,7 @@ ch20 Testing                               | 77     | taotao
 ch21 Events                                | 4      | 
 ch22 Architecture                          | 6      | 
 ch23 Angular Animation                     | 38     |  
-ch24 The Digest Loop and $apply            | 9      | 
+ch24 The Digest Loop and $apply            | 9      | xiongliang 
 ch25 Demystifying Angular                  | 2      | 
 ch26 Essential AngularJS Extensions        | 14     |  
 ch27 Mobile Apps                           | 17     |  
