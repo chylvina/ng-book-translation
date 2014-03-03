@@ -1,9 +1,3 @@
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
-
-
 章节                                         页数     负责人
 ------------------------------------------ | ------ | ----------------
 ch00 Contents                              | 8      | 
