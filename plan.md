@@ -24,7 +24,7 @@ ch14 Dependency Injection                  | 7      | 熊亮
 ch15 Services                              | 7      |  
 ch16 Communicating with the Outside ...    | 32     |  
 ch17 XHR in Practice                       | 16     |  
-ch18 Promises                              | 8      | 
+ch18 Promises                              | 8      | 郁苍
 ch19 Server Communication                  | 57     |  
 ch20 Testing                               | 77     |  
 ch21 Events                                | 4      | 
