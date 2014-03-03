@@ -65,7 +65,7 @@ $scope.name = $filter('lowercase')('Ari');
 
 在这之前，先让我们来看看AngularJS内置的过滤器。
 
-## Currency 货币过滤器
+### Currency 货币过滤器
 
 > The currency filter formats a number as currency.
 
@@ -83,7 +83,7 @@ $scope.name = $filter('lowercase')('Ari');
 
 默认是显示当前语言环境的货币选项；然而，我们可以通过一个货币显示。？
 
-## Date 日期过滤器
+### Date 日期过滤器
 
 > The date filter allows us to format a date based upon a requested format style.
 
@@ -176,7 +176,7 @@ am/pm character: {{ today | date:'a' }} <!-- AM -->
 {{ today | date:'EEEE, d, M' }} <!-- Thursday, 9, 8 --> {{ today | date:'hh:mm:ss.sss' }} <!-- 12:09:02.995 -->
 ```
 
-## filter 条件过滤器
+### filter 条件过滤器
 
 > The filter filter selects a subset of items from an array of items and returns a new array.
 
@@ -225,6 +225,328 @@ am/pm character: {{ today | date:'a' }} <!-- AM -->
 > function
 
 ### function 方法
+
+> It will run the function over each element of the array, and the results that return as non-falsy will appear in the new array.
+
+他会对数组中的每一个元素运行该方法，并将方法中返回值为真的元素添加进一个新的数组并返回该数组。
+
+> For instance, selecting all of the words that have the letter e in them, we could run our filter like so:
+
+举个栗子，在下面这些单词中，选出所有包含字母e的单词，我们可以这样使用过滤器：
+
+```
+{{ ['Ari', 'Lerner', 'Likes', 'To', 'Eat', 'Pizza'] | filter:'e' }}
+<!-- ["Lerner","Likes","Eat"] -->
+```
+
+> If we want to filter on objects, we can use the the object filter notation as we discussed above.
+
+如果我们想要对对象进行过滤， 可以使用上面所讨论的对象过滤器。
+
+> For instance, if we have an array of people objects with a list of their favorite foods, we could filter them like so:
+
+举个栗子，如果我们有一个数组，其中是人们喜欢的食物，我们可以像这样过滤它们：
+
+```
+
+{{ [{
+    'name': 'Ari',
+    'City': 'San Francisco',
+    'favorite food': 'Pizza'
+    }, {
+    'name': 'Nate',
+    'City': 'San Francisco',
+    'favorite food': 'indian food'
+    }] | filter:{'favorite food': 'Pizza'} }}
+<!-- [{"name":"Ari","City":"San Francisco","favorite food":"Pizza"}] -->
+```
+
+> We can also filter based on a function that we define (in this example, on the containing $scope object):
+
+我们也可以我们定义的函数来过滤（在这个栗子中，包含 **$scope** 作用域对象）：
+
+```
+{{ ['Ari', 'likes', 'to', 'travel'] | filter:isCapitalized }}
+<!-- ["Ari"] -->
+
+```
+
+> The isCapitalized function, which returns true if the first character is a capital letter and false if it is not, is defined as:
+
+**isCapitalized** 函数的意思是，如果第一个字母大写返回true，否则返回false,定义如下：
+
+```
+$scope.isCapitalized =
+function(str) { return str[0] == str[0].toUpperCase(); }
+```
+
+> We can also pass a second parameter into the filter method that will be used to determine if the expected value and the actual value should be considered a match.
+
+```
+We can also pass a second parameter into the filter method that will be used to determine if the expected value and the actual value should be considered a match.
+If the second parameter passed in is:
+true
+It runs a strict comparison of the two using angular.equals(expected, actual). false
+It looks for a case-insensitive substring match.
+function
+It runs the function and accepts an element if the result of the function is truthy.
+``` ?
+
+### JSON JSON过滤器
+
+> The json filter will take a JSON, or JavaScript object, and turn it into a string.
+
+**json** 过滤器会将JSON数据或者JavaScript对象，转换成字符串。
+
+```
+{{ {'name': 'Ari', 'City': 'San Francisco'} | json }}
+<!-- {
+  "name": "Ari",
+  "City": "San Francisco"
+}
+-->
+```
+
+> The limitTo filter creates a new array or string that contains only the specified number of elements, either taken from the beginning or end, depending on whether the value is positive or negative.
+
+limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束位置指定数量的元素,这取决于该值是正的还是负的。
+
+> If the limit exceeds the value of the string, then the entire array or string will be returned.
+
+** 如果超过了字符串或数组的长度，整个字符串或数组将都会被返回。 **
+
+> For instance, we can take the first three letters of a string:
+
+举个栗子，我们想要字符串中的前三个字符：
+
+```
+{{ San Francisco is very cloudy | limitTo:3 }}
+<!-- San -->
+```
+
+> Or we can take the last 6 characters of a string:
+
+或者我们想要字符串中最后6个字符：
+
+```
+{{ San Francisco is very cloudy | limitTo:-6 }}
+<!-- cloudy -->
+```
+
+> We can do the same with an array. Here we’ll return only the first element of the array:
+
+我们可以对一个数组做同样的操作。这里将仅返回数组中的第一个元素：
+
+```
+{{ ['a', 'b', 'c', 'd', 'e', 'f'] | limitTo:1 }}
+<!-- ["a"] -->
+```
+
+### lowercase 小写过滤器
+
+> The lowercase filter simply lowercases the entire string.
+
+小写过滤器只是将整个字符串变成小写。
+
+```
+{{ "San Francisco is very cloudy" | lowercase }}
+<!-- san francisco is very cloudy -->
+```
+
+### number  数字过滤器
+
+> The number filter formats a number as text.
+
+**number** 过滤器将数字格式化成文本。
+
+> It can take a second parameter (optional) that will format the number to the specified number of decimal places (rounded).
+
+它可以通过第二个参数（可选），格式化数字的小数位数（四舍五入）。
+
+> If a non-numeric character is given, it will return an empty string.
+
+** 如果传入的是一个非数字的字符，它将返回一个空的字符串。 **
+
+```
+{{ 123456789 | number }}
+<!-- 1,234,567,890 -->
+{{ 1.234567 | number:2 }}
+<!-- 1.23 -->
+```
+
+### orderBy 排序过滤器
+
+> The orderBy filter orders the specific array using an expression.
+
+**orderBy** 过滤器使用一个表达式筛选出一个特定的数组。
+
+> The orderBy function can take two parameters: The first one is required, while the second is optional.
+
+**oderBy** 过滤器方法可以接受两个参数：第一个参数是必须的，第二个参数是可选的。
+
+> The first parameter is the predicate used to determine the order of the sorted array.
+
+第一个参数是用于确定排序后的数组中顺序的谓词。
+
+> If the first parameter passed in is a(n):
+
+如果第一个参数是一个:
+
+> function
+
+**function** 函数
+
+> It will use the function as the getter function for the object.?
+
+**string** 字符串
+
+> It will parse the string and use the result as the key by which to order the elements of the array.
+
+它将解析字符串，并用解析后的结果作为关键字对数组中的元素进行排序。
+
+> We can pass either a + or a - to force the sort in ascending or descending order.
+
+我们可以使用一个 **+** 或者 一个 **-** 强制按升序或降序排序。
+
+**array** 数组
+
+> It will use the elements as predicates in the sort expression.
+
+它将在排序表达式中使用元素作为谓词。
+
+> It will use the first predicate for every element that is not strictly equal to the expression result.     ？
+
+> The second parameter controls the sort order of the array (either reversed or not).
+
+第二个参数控制数组的排序顺序（反向与否）。
+
+> For instance, let’s sort an array of objects by their name.
+
+举个栗子，让我们以name来对一个对象数组进行排序。
+
+> Say we have an array of people, we can order the array of objects with the name value:
+
+假设我们有一个包含 **people** 对象的数组，我们可以使用name的值来对数组进行排序：
+
+```
+{{ [{
+    'name': 'Ari',
+    'status': 'awake'
+    }, {
+    'name': 'Q',
+    'status': 'sleeping'
+    }, {
+    'name': 'Nate',
+    'status': 'awake'
+    }] | orderBy: 'name' }}
+<!-- [
+  {"name":"Ari","status":"awake"},
+  {"name":"Nate","status":"awake"},
+  {"name":"Q","status":"sleeping"}
+  ]
+-->
+```
+
+> We can also reverse-sort the object.
+
+我们也可以反向排序对象。
+
+> For instance, reverse-sorting the previous object, we simply add the second parameter as true:
+
+举个栗子，反向排序前面的对象，我们只需要简单的设置第二个参数为true:
+
+```
+{{ [{
+    'name': 'Ari',
+    'status': 'awake'
+    }, {
+    'name': 'Q',
+    'status': 'sleeping'
+    }, {
+    'name': 'Nate',
+    'status': 'awake'
+    }] | orderBy:'name':true }}
+<!-- [
+  {"name":"Q","status":"sleeping"},
+  {"name":"Nate","status":"awake"},
+  {"name":"Ari","status":"awake"}
+  ]
+-->
+```
+
+### uppercase 大写过滤器
+
+> The uppercase filter simply uppercases the entire string:
+
+**uppercase** 过滤器简单的将字符串全部变成大写：
+
+```
+{{ "San Francisco is very cloudy" | uppercase }}
+<!-- SAN FRANCISCO IS VERY CLOUDY -->
+```
+
+> Making Our Own Filter
+
+## 创建自己的过滤器
+
+> As we saw above, it’s really easy to create our own custom filter.
+
+如我们前面所见，创建属于我们自己的过滤器是很容易的。
+
+> To create a filter, we put it under its own module.
+
+要创建过滤器，我们要将它放在module中。
+
+> Let’s create one together: a filter that capitalizes the first character of a string.
+
+让我们一起来创建一个将字符串的第一个字母大写的过滤器。
+
+> First, we need to create it in a module that we’ll require in our app (this step is good practice):
+
+首先，我们需要在module中创建它，在我们的app中我们会需要module(这一步是最佳实践):？
+
+```
+angular.module('myApp.filters', []) .filter('capitalize', function() {
+return function(input) {} });
+```
+
+> Filters are just functions to which we pass input.
+
+过滤器仅仅是一个接受input参数的函数。？
+
+> In the function above, we simply take the input as the string on which we are calling the filter.
+
+在上面的函数中，我们只是以input作为字符串当作参数来调用过滤器。
+
+> We can do some error checking inside the function:
+
+我们可以在函数中做一些错误检查：
+
+```
+angular.module('myApp.filters', []) .filter('capitalize', function() {
+return function(input) {
+// input will be the string we pass in if (input)
+return input[0].toUpperCase() + input.slice(1);
+} });
+```
+
+> Now, if we want to capitalize the first letter of a sentence, we can first lowercase the entire string and then capitalize the first letter with our filter:
+
+现在，如果我们想把句子的首字母大写，我们可以先将全部字符串小写，然后使用我们的过滤器大写第一个字母：
+
+```
+<!-- Ginger loves dog treats -->
+{{ 'ginger loves dog treats' | lowercase | capitalize }}
+```
+
+
+
+
+
+
+
+
+
 
 
 
