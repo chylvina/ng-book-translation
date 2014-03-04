@@ -10,7 +10,7 @@ scope提供了一种能够监听model改变的能力，此外angular提供了一
 ###The $scope View of the World
 在Angular开始执行并生成视图的时候，会创建一个从root ng-app元素到$rootScope作用域的数据绑定。$rootScope是所有$scope对象的最终父元素。  
 ####scopes
-  $rootScope对象是全局上下文的最近的作用域对象，在全局上下文上绑定过多的业务逻辑是一个糟糕的方式，同样也不要在$rootScope上绑定过多的属性。  
+  $rootScope对象是距离全局上下文最近的作用域对象，在全局上下文上绑定过多的业务逻辑是一个糟糕的方式，同样也不要在$rootScope上绑定过多的属性。  
   $scope对象是普通的javascript对象,并不像传统的数据对象，$scope不再提供对数据处理的方法，$scope是视图（view）和HTML之间的桥梁，是视图和控制器之间的纽带。  
   所有在$scope中可以访问的属性，在对应的view中都可以获取。  
   例如我们来看一段HTML代码：
