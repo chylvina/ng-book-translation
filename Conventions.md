@@ -14,3 +14,8 @@
 - string,object 这些是否有必要翻译成字符，对象？如果不翻译的话，这几个词有连起来出现的情况，就比较尴尬了。For instance, let’s sort an array of objects by their name.
 - predicate 谓词？过滤器中常出现。
 - diggest ?
+- preprogrammed behavior 预置行为
+- emerge ?
+- composition 构造？
+- primitive pieces 原始件？
+- Bootstrapped ？
