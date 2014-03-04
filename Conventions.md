@@ -15,3 +15,8 @@
 - predicate 谓词？过滤器中常出现。
 - diggest ?
 - Angular app   Angular应用
+- preprogrammed behavior 预置行为
+- emerge ?
+- composition 构造？
+- primitive pieces 原始件？
+- Bootstrapped ？
