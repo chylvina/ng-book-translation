@@ -32,7 +32,7 @@ ch28 Localization                          | 15     |                 |
 ch29 Caching                               | 4      |                 |
 ch30 Security                              | 8      |                 |
 ch31 AngularJS and Internet Explorer       | 13     |                 |
-ch32 Building Angular Chrome Apps          | 23     |                 |
+ch32 Building Angular Chrome Apps          | 23     | jilei.liu       |
 ch33 Optimizing Angular Apps               | 11     |                 |
 ch34 Debugging AngularJS                   | 3      | yeqin           |
 ch35 Next Steps                            | 26     |                 |
