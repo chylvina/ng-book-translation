@@ -19,29 +19,33 @@
 HTML 元素可以包含属性来提供一个元素的额外信息。这些属性通常被配置在起始标签上，我们可以通过一个key-value对来配置他们，例如：key=”value”，或者仅指定一个key。
 
 让我们来看看&lt;a&gt;超链接标签，用于创建从一个页面到另一个页面的链接：
-有些标签，像超链接标签，有些可以看作参数的特殊属性。比如，一个链接标签的href属性使链接标签既具有链接行为，同时在所有浏览器默认情况下也将链接标签内的文本显示为蓝色。
+有些标签，像超链接标签，有些可以看作参数的特殊属性。比如，一个链接标签的<em>href</em>属性使链接标签既具有链接行为，同时在所有浏览器默认情况下也将链接标签内的文本显示为蓝色。
 
-<pre><code>
-<a href="http://google.com">Click me to go to Google</a>
-</code></pre>
+<pre>
+<code>
+&lt;a href="http://google.com">Click me to go to Google&lt;/a>
+</code>
+</pre>
 
 &lt;a&gt;标签定义了一个到另一个页面的链接，此页面属于我们的网站或在其他网站，这取决于href属性的内容，该内容定义了链接的目标。
 它与下面的HTML 按钮元素有明显的区别：
 
-<pre><code>
-<button href="http://google.com" type="submit">Click me</button>
-</code></pre>
+<pre>
+<code>
+&lt;button href="http://google.com" type="submit">Click me&lt;/button>
+</code>
+</pre>
 
 链接标签在默认情况下带下划线且为蓝色，而Button默认情况下在我们的浏览器里看起来是一个可点击的按钮。
-链接标签知道，当指定href属性为http://google.com时，如果用户点击链接，它应该改变地址栏中的URL并加载谷歌的首页。
-而按钮标签，完全无视指定的href属性，也不执行跳转的行为（该属性被忽略）。
+链接标签知道，当指定<em>href</em>属性为http://google.com时，如果用户点击链接，它应该改变地址栏中的URL并加载谷歌的首页。
+而按钮标签，完全无视指定的<em>href</em>属性，也不执行跳转的行为（该属性被忽略）。
 因此，改变地址栏中的URL并把你带到一个新的页面是一个链接的预置行为，但不是按钮的预置行为。
 不过这两个标签对title属性提供相同的行为：当用户悬停时都显示提示。
 
 <pre>
 <code>
-<a href="http://google.com" title="click me">Click me to go to Google</a>
-<button type="submit" title="click me">Click me</button>
+&lt;a href="http://google.com" title="click me">Click me to go to Google&lt;/a>
+&lt;button type="submit" title="click me">Click me&lt;/button>
 </code>
 </pre>
 
@@ -54,7 +58,7 @@ HTML 元素可以包含属性来提供一个元素的额外信息。这些属性
 
 <pre>
 <code>
-<video href="/goofy-video.mp4"></video>
+&lt;video href="/goofy-video.mp4">&lt;/video>
 </code>
 </pre>
 
@@ -65,7 +69,7 @@ HTML 元素可以包含属性来提供一个元素的额外信息。这些属性
 
 <pre>
 <code>
-<my-better-video my-href="/goofy-video.mp4">Can even take text</my-better-video>
+&lt;my-better-video my-href="/goofy-video.mp4">Can even take text&lt;/my-better-video>
 </code>
 </pre>
 
@@ -74,9 +78,9 @@ HTML 元素可以包含属性来提供一个元素的额外信息。这些属性
 
 <pre>
 <code>
-<video my-href="/goofy-video.mp">
+&lt;video my-href="/goofy-video.mp">
 Can still take children nodes
-</video>
+&lt;/video>
 </code>
 </pre>
 
@@ -91,9 +95,9 @@ A built-in directive is one that ships out of the box with Angular.所有的内�
  
 <pre>
 <code>
-<html ng-app="myApp">
+&lt;html ng-app="myApp">
 &lt;!-- $rootScope of our application --&gt;
-</html>
+&lt;/html>
 </code>
 </pre>
 
@@ -106,7 +110,7 @@ A built-in directive is one that ships out of the box with Angular.所有的内�
 
 <pre>
 <code>
-<my-directive></my-directive>
+&lt;my-directive>&lt;/my-directive>
 </code>
 </pre>
 
@@ -123,7 +127,7 @@ angular.module('myApp', [])
 .directive('myDirective', function() {
     return {
         restrict: 'E',
-        template: '<a href="http://google.com">Click me to go to Google</a>'
+        template: '&lt;a href="http://google.com">Click me to go to Google&lt;/a>'
     }
 });
 </code>
