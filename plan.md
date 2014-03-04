@@ -22,7 +22,7 @@ ch18 Promises                              | 8      | liuqi
 ch19 Server Communication                  | 57     |  
 ch20 Testing                               | 77     | taotao 
 ch21 Events                                | 4      | 
-ch22 Architecture                          | 6      | 
+ch22 Architecture                          | 6      | yeqin
 ch23 Angular Animation                     | 38     |  
 ch24 The Digest Loop and $apply            | 9      | xiongliang 
 ch25 Demystifying Angular                  | 2      | 
@@ -34,5 +34,5 @@ ch30 Security                              | 8      |
 ch31 AngularJS and Internet Explorer       | 13     |   
 ch32 Building Angular Chrome Apps          | 23     |  
 ch33 Optimizing Angular Apps               | 11     |  
-ch34 Debugging AngularJS                   | 3      | 
+ch34 Debugging AngularJS                   | 3      | yeqin
 ch35 Next Steps                            | 26     |  
