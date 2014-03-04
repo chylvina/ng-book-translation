@@ -132,3 +132,50 @@ Using Services(使用Services)
 在我们需要使用一个组件时，将service作为它的依赖来用：一个controller, 一个directive,一个filter, 或者另外一个 service。在运行的时，Angular会实例化它，并且处理好它的依赖关系。
 
 我们用service的名字作为入参到controller函数里，将这个service注入到controller里。通过controller的依赖关系，我们可以使用service的方法。
+
+<pre><code>
+
+angular.module('myApp', ['myApp.services']).controller('ServiceController',
+
+  function($scope, githubService) {
+
+    //我们可以通过这个对象调用events 这个函数
+
+    $scope.events = githubService.events('auser');
+
+});
+</code></pre>
+
+githubService注入我们的ServiceController，它使用起来就像另外的一个server。
+
+让我们写一个例子用我们view中定义用户名去调用GitHub API。我们会用数据绑定部分的内容，将用户名绑定到这个view上。
+
+<pre><code>
+
+&lt;div ng-controller="ServiceController"&gt;
+
+  &lt;label for="username"&gt;
+
+      Type in a GitHub username
+
+  &lt;/label&gt;
+
+  &lt;input type="text" ng-model="username" placeholder="Enter a GitHub username" /&gt;
+
+  &lt;ul&gt;
+
+    &lt;li ng-repeat="event in events"&gt;
+
+    &lt;!-- {{ event | json }} --&gt;
+
+    {{ event.actor.login }} {{ event.repo.name }}
+
+    &lt;/li&gt;
+
+  &lt;/ul&gt;
+
+&lt;/div&gt;
+
+</code></pre>
+
+现在我们可以通过监听$scope.username属性，基于双向绑定做出页面的变化。
