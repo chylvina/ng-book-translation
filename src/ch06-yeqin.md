@@ -32,13 +32,13 @@ app.controller('FirstController', function($scope) {
 
 使用控制器能够让我们在单个容器中包含单一视图的逻辑。
 一个好的编程习惯是保持控制器简洁。
-AngularJs开发者通过使用Angular的依赖注入特性使用服务来保持控制器简洁。
+AngularJs开发者通过Angular的依赖注入特性使用服务来保持控制器简洁。
 同其他Javascript框架的一个重要区别是，AngularJS仅作为视图层和$scope模型层之间的一种连接。
 因此控制器并不是个合适的地方来处理DOM操作，以及进行除了存储模型数据之外的数据格式化，维持状态的操作。AngularJS能够在$scope上设置任何类型，包括对象，并能将对象属性展示在视图层。
 例如，我们可以在控制器MyController中，创建一个只包含name属性的person对象：<pre><code>app.controller('MyController', function($scope) { $scope.person = {    name: "Ari Lerner"  };});
 </code></pre>
 
-在ng-controller='MyController'所在的div中的任何子元素中，我们都能够得到$scope上的person对象。例如，现在我能能够在视图中得到person对象的引用以及获取到person.name。
+在ng-controller='MyController'所在的div中的任何子元素中，我们都能够得到$scope上的person对象。例如，现在我们能够在视图中得到person对象的引用以及获取到person.name。
 <pre>	<div ng-app="myApp">		<div ng-controller="MyController">			<h1>{{ person }}</h1>			and their name:			<h2>{{ person.name }}</h2>  		</div>	</div></pre>
 我们可以看出$scope对象怎样从模型层到视图层传递信息。
 我们也可以用同样的方式来监听事件，同应用的其他部分进行交互，或是创建应用的特殊逻辑。
@@ -47,7 +47,7 @@ Angular 使用作用域来隔离视图层功能，控制器和指令（本书后
 AngularJS应用中每个部分都有一个父作用域（在ng-app层级上，这个作用域叫$rootScope）,这与其渲染的内容无关。
 这里有一个例外：指令中创建的作用域是独立的作用域。
 除了独立的作用域，被创建的作用域都遵循原型继承，即他们能够访问到父级作用域。
-如果我们了解面向对象编程，这个行为看着很熟悉。
+如果我们了解面向对象编程，这个行为看起来很熟悉。
 默认情况下，AngularJS如果在当前作用域下查找不到某个属性，它会向上到其父作用域中查找，若仍找不到会继续向上查找，直到到达$rootScope作用域。如果在$rootScope中还没有找到，它将不会更新视图层，然后继续执行其他部分。为了理解上面的过程，我们创建一个ParentController，一个ChildController。ParentController中定义一个person对象。ChildController包含在ParentController中，它引用了person对象：<pre><code>app.controller('ParentController', function($scope) { 
 	$scope.person = {greeted: false};});app.controller('ChildController', function($scope) { 
 	$scope.sayHello = function() {    	$scope.person.name = "Ari Lerner";		$scope.person.greeted = true; 
@@ -66,7 +66,7 @@ AngularJS应用中每个部分都有一个父作用域（在ng-app层级上，�
 例如，下面的控制器代码过于繁重，它包含了DOM处理和很多视图层的处理逻辑：
 <pre><code>
 angular.module('MyController', function($scope) { $scope.shouldShowLogin = true; $scope.showLogin = function() {    $scope.shouldShowLogin = !$scope.shouldShowLogin;   }$scope.clickButton = function() { $("#btn span").html("Clicked");}$scope.onLogin = function(user) {    $http({      method: 'POST',      url: '/login',      data: {user: user }}).success(function(data) { // user}) }})
-</code></pre>一个良好设计的应用会使用指令（directive）和服务（service）来处理逻辑。我们将前面的控制器，用指令和服务来重新改写，得到一个更简洁，更易于维护的控制器：
+</code></pre>一个良好设计的应用会使用指令和服务来处理逻辑。我们将前面的控制器，用指令和服务来重新改写，得到一个更简洁，更易于维护的控制器：
 <pre><code>
 angular.module('MyController', function($scope, UserSrv) { 
 	// The content can be controlled by	// directives	$scope.onLogin = function(user) {    	UserSrv.runLogin(user);  	}})
