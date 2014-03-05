@@ -1,7 +1,7 @@
-### 内置指令
-Angular提供了一套内置指令。某些指令覆盖内置的html元素，如<form>和<a>标签。然而事实上，当我们在html中使用这些标签时，无法立刻获得我们想要的功能，然而Angular提供的指令可以帮助我们实现。
+## 内置指令
+Angular提供了一套内置指令。某些指令覆盖内置的html元素，如form和a标签。然而事实上，当我们在html中使用这些标签时，无法立刻获得我们想要的功能，然而Angular提供的指令可以帮助我们实现。
 
-例如，<form>标签封装了许多功能，像表单校验，这在标准HTML的form中并不默认存在。
+例如，form标签封装了许多功能，像表单校验，这在标准HTML的form中并不默认存在。
 
 其他内置指令通过他们的ng-前缀被显式声明。例如，ng-href,我们下面会详细介绍，在ng-href="someExpression"被解析并得到返回值之前，链接的指向是无效的。
 
@@ -13,14 +13,14 @@ Angular提供了一套内置指令。某些指令覆盖内置的html元素，如
 ### 基本的ng属性指令
 第一部分指令采用了类似html属性的命名，因为只是在html属性前增加了ng的前缀所以也很容易被记住，包括：
 
-• ng-href
-• ng-src
-• ng-disabled
-• ng-checked
-• ng-readonly
-• ng-selected
-• ng-class
-• ng-style
+- ng-href
+- ng-src
+- ng-disabled
+- ng-checked
+- ng-readonly
+- ng-selected
+- ng-class
+- ng-style
 
 
 ### 布尔属性
@@ -34,10 +34,10 @@ When working with dynamic data via data bindings in Angular, we cannot simply se
 
 #### ng-disabled
 用ng-disabled来绑定以下表单项的disabled属性：
-• <input> (text, checkbox, radio, number, url, email, submit)
-• <textarea>
-• <select>
-• <button>
+- <input> (text, checkbox, radio, number, url, email, submit)
+- <textarea>
+- <select>
+- <button>
 
 当使用普通的HTML表单项时，表单项的disabled属性代表此字段禁用。可以使用ng-disabled来控制disabled这个属性是否生效。
 
@@ -62,4 +62,22 @@ code。。。
 
 #### ng-selected
 使用ng-selected指令为option标签指定是否存在selected属性
+
+### Boolean-like Attributes
+。。。。,ng-href和ng-src以类似于布尔属性的方式。。。。因此ng布尔属性。。。。？？？
+While not technically HTML, boolean attributes like the ng-href and ng-src act in a similar manner and are therefore defined alongside the ng boolean attributes within the Angular source code and presented here.
+
+当程序尚未解析代码之前，ng-href和ng-src能够很好的提高渲染效率和防止错误发生，因此推荐使用ng-href和ng-src来代替href和src。
+
+#### ng-href
+当从当前作用域的一个属性动态的创建一个URL，通常使用ng-href代替href。在插值{{}}未被替换之前，用户可能会点击href生成的链接，这样将跳转到错误的页面（通常是404页面）。
+
+另一方面,通过使用ng-href，Angular会等待插值{{}}被替换（在我们的例子中，是在2秒钟之后），然后激活链接行为:
+
+为插值解析延迟2秒钟，来观察行为的进展：
+
+#### ng-src
+Angular会告诉浏览器在ng-src指向的路径中的插值表达式被解析之前不要去获取图片：
+
+当看到这个例子，可以打开Chrome浏览器的开发者工具的网络面板，注意到有一个请求因为发生了错误是红色的。这个错误就是在'Wrong Way'的代码种我们使用src代替ng-src发生的。
 
