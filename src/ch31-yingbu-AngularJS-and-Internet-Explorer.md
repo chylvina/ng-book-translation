@@ -1,4 +1,4 @@
-AngularJS and Internet Explorer
+# AngularJS and Internet Explorer
 ## AngularJS和IE
 
 AngularJS works seamlessly with most modern browsers. Safari, Google Chrome, Google Chrome Canary, and Firefox work great. The notorious Internet Explorer version 8 and earlier can cause us problems.
@@ -21,7 +21,8 @@ This xmlns:ng=”http://angularjs.org” makes IE feel more comfortable.
 
 If we use non-standard HTML tags, we need to create the tags in the head of the document if we want IE to recognize them. We can do so simply in the head element.
 `如果大家使用非标准的HTML标签，我们需要在header标签中使用JavaScrit来创建这个标签，比如下面这样：`
-```
+
+```html
 <!doctype html>
 <html xmlns:ng="http://angularjs.org"> <head>
     <!--[if lte IE 8]
@@ -43,14 +44,21 @@ It is recommended that we use the attribute directive form, as we don’t need t
 <div data-ng-view></div>
 To make AngularJS work with IE7 and earlier, we need to polyfill JSON.stringify. We can use the
 JSON3125 or JSON2126 implementations.
+`为了使IE7或更早的版本支持AngularJS，我们需要一个JSON.stringify补丁，我们可以使用JSON3125(注) 或者 JSON2126(注) 的实现`
+
+
 In our browser, we need to conditionally include this file in the head. We must download the file,
 store it in a location relative to the root of our application, and reference it in the head, like so:
+`我们需要在head中用条件注释来加载它，引用位于网站根目录的相对位置，比如下面这样： `
+
+```html
 <!doctype html>
 <html xmlns:ng="http://angularjs.org"> <head>
     <!--[if lte IE 8]
     <script src="lib/json2.js"></script>
     <![endif]-->
 </head> <body>
+```
 <!-- ... -->
 To use the ng-app directive with IE support, we set the element id to ng-app, as well. <body id="ng-app" ng-app="myApp">
 <!-- ... -->
