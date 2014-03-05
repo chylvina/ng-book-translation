@@ -179,3 +179,260 @@ githubService注入我们的ServiceController，它使用起来就像另外的�
 </code></pre>
 
 现在我们可以通过监听$scope.username属性，基于双向绑定做出页面的变化。
+
+<pre><code>
+
+.controller('ServiceController',function($scope, githubService) {
+
+  // 监听username的变化，当它改变的时候，执行下面的函数
+
+  $scope.$watch('username', function(newUsername) {
+
+    //用$http  service 去请求GitHub API，再返回结果
+
+    githubService.events(newUsername).success(function(data, status, headers) {
+
+      // 成功时由一个函数包裹,相应的数据在data里
+
+      // 所以我们需要通过 data.data 去获取数据
+
+      $scope.events = data.data;
+
+     });
+
+  });
+
+});
+
+
+</code></pre>
+
+应为我们返回了$http的promise，我们可以通过.success()方法直接调用$http。
+
+在controller 里使用$watch 是不推荐的。我们只是作个简单的示范。在真实操作中，我们会把$watch放在directive中去代替。
+
+在这个例子中，我们会注意到输入框变化有延时机制。如果我们不引入延时机制，我们会在每次输入都会向GitHub API发起请求，这样就不是我们想要的。
+
+我们用内置的 $timeout 这个service来解释延时机制。我们使用$timeout，会像githubService注入进controller那样把$timeout注入进去
+
+<pre><code>
+
+app.controller('ServiceController', function($scope, $timeout, githubService) {
+
+});
+
+</code></pre>
+
+一般我们会把Angular的内置的service 放在我们自己定义的service 之前。
+
+现在我们可以在controller里用$timeout。$timeout 在这种情况下会取消350ms内对输入框的操作，从而取消这些网络请求。换句话说，如果我们在输入时超过350ms，会认为操作完成并向 GitHub 发起请求。
+
+<pre><code>
+
+app.controller('ServiceController', function($scope, $timeout, githubService) {
+
+  // 像上面的例子一样 优先注入$timeout
+
+  var timeout;
+
+  $scope.$watch('username', function(newUserName) {
+
+  if (newUserName) {
+    // 如果这里已经 有了一个timeout
+
+    if (timeout) $timeout.cancel(timeout);
+    timeout = $timeout(function() {
+
+    githubService.events(newUserName).success(function(data, status) {
+
+        $scope.events = data.data;
+
+      });
+
+    }, 350);
+
+    }
+
+  });
+
+});
+
+</code></pre>
+
+至此，我们只是在关注service如何包裹一个函数。我们同样可以用service去包裹数据对象，在controller里调用。
+
+例如，如果我们的应用程序要从后端服务需要身份验证，我们可能希望创建一个SessionsService处理用户身份验证，并持有到由后端服务通过一个令牌。当任何部分我们的应用程序要作出一个身份验证的请求，它可以使用SessionsService来获得访问令牌。
+
+如果我们的应用程序中都有设置用户的GitHub的用户名的设置页面，我们会想，在我们的应用程序中的其它controller共享的用户名。
+
+我们需要一个方法添加到我们的service去分享跨controller存储的用户名。记住，service 是一个单例的服务，所以我们可以安全地存储用户名。
+
+<pre><code>
+
+angular.module('myApp.services', []) .factory('githubService', function($http) {
+
+  var githubUrl = 'https://api.github.com',
+
+        githubUsername;
+
+  var runUserRequest = function(path) {
+
+  //通过$http 返回 JSONP 格式的Github API
+
+    return $http({
+
+      method: 'JSONP',
+
+      url: githubUrl + '/users/' + githubUsername + '/' +  path + '?callback=JSON_CALLBACK'
+
+      });
+  }
+
+  // 返回 service 对象 包含  events 和 setUsername 两个方法
+
+  return {
+
+    events: function() {
+
+        return runUserRequest('events');
+
+      },
+
+    setUsername: function(username) {
+
+        githubUsername = username;
+
+      }
+
+    };
+
+  });
+
+
+</code></pre>
+
+现在，我们的service有了setUsername方法，使我们能够设置用户名当前GitHub的用户。
+
+在我们的应用程序的任何controller ，我们可以注入的githubService并调用events()不需要关心是否有一个正确的username在scope对象里。
+
+<pre><code>
+
+angular.module('myApp', ['myApp.services']).controller('ServiceController',
+
+  function($scope, githubService) {
+
+    $scope.setUsername =  githubService.setUsername;
+
+});
+
+
+</code></pre>
+
+#Options for Creating Services(创建Services的选项)
+
+通常Angular注册一个 service 用的是factory() 方法，这里还有一些别的API，会帮我们减少注册一个 service的代码。
+
+5种创建service的方法：
+
+  * factory()
+  * service()
+  * constant()
+  * value()
+  * provider()
+
+##factory()
+
+factory()方法是一个快速的方法来创建和配置service。factory()函数有两个参数：
+
+  * name (string)
+
+  注册的service的名称。
+
+  * getFn (function)
+
+  这个函数会在angular创建service时执行。
+
+<pre><code>
+
+angular.module('myApp') .factory('myService', function() {
+
+  return {
+
+    'username': 'auser'
+
+  }
+
+});
+
+</code></pre>
+
+因为service是一个单例对象getFn方法会在应用的生命周期被调用一次。当我们定义我们的service，getFn 可以用一个函数或者一个数组的方式将其他service 注入进来。
+
+The getFn function can return anything from a primitive value to a function to an object (similar to the value() function).
+
+<pre><code>
+
+angular.module('myApp').factory('githubService', [
+
+  '$http', function($http) {
+
+    return {
+
+      getUserEvents: function(username) {
+
+        }
+
+    }
+
+}]);
+
+</code></pre>
+
+##service()
+如果我们要使用一个构造函数来注册一个服务的实例，我们可以使用service()方法，这使我们能够注册一个构造函数为我们的service对象。
+
+service()方法有两个参数：
+
+  * name (string)
+
+  我们需要要注册的服务实例的名称。
+
+  * constructor (function)
+
+  构造函数。
+
+  service()函数要new关键字实例化。
+
+<pre><code>
+
+var Person = function($http) {
+
+  this.getName = function() {
+
+    return $http({
+
+      method: 'GET',
+
+      url: '/api/user'
+
+    });
+
+  };
+
+};
+
+angular.service('personService', Person);
+
+</code></pre>
+
+##provider
+
+这些factories 都通过$provide的服务创建的，它负责在运行时实例化这些provider。
+
+一个provider就是一个有$get()方法的对象。$injector调用$get方法创建一个service实例。在$provider提供了几个不同的API方法创建一个service，每一个不同的预期用途。
+
+在所有的方法来创建一个service的根源通过是provider的方法。provider()方法负责在$providerCache注册服务。
+
+技术上，factory()函数是简写通过provider()方法创造一个service，其中$get()函数是传入的函数。
+
+这两个方法调用功能相同，将创建相同的服务。
