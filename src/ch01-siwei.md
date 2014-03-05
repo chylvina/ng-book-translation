@@ -6,3 +6,15 @@
 当我第一次接触AngularJs时我就被它吸引了,因为我感觉它能提供一个独立的框架用来构建各种动态的、用户体验很好的应用.在我了解更多信息以后,我确认了我的第一印象。AngularJS具有一系列强大的特性，它提供了一种模块化编写代码的方法,这种模块化编程的方法有利于复用、后期维护以及测试。AngularJS的主要特性包括,支持DOM操作、动画、模板、数据的双向绑定，路由、history、ajax以及单元测试等等。
 
  虽然有一个核心框架作为基础是非常好的，但是学习这些框架还是很具有挑战性的。当我深入学习AngularJS时，我被各种概念弄得非常困惑，甚至怀疑它是否真的适合我。什么是service?它与factory有什么不同?scope是怎样注入的？directive又是什么?我首先要做的就是把这些零碎的知识点弄懂然后再全面整体的去了解.如果有一些资源去参阅，学习这些东西就会容易很多.
+ 
+ 幸运的是，在ng-book中有很好的资源供你使用：The complete Book on AngularJS 能帮你立刻有所收获。Ari Lerner 将自己所学的专业知识以一种容易理解的方式
+呈现出来。如果你想学习更多关于数据绑定，“live"模板如何工作，测试AngularJS应用的程序的知识，那么你选择对了。AngularJS是一款非常强大和有趣的框架。
+此书中的例子将会帮助你在框架方面迅速提高。祝你们在AngularJS开发项目中好运！
+Dan Wahlin Wahlin 参阅<http://weblogs.asp.net/dwahlin1><http://twitter.com/DanWahlin2>
+
+###致谢
+首先，我想感谢一直以来鼓励我写这本书的每个人。说出书很容易的人都是从未自己写过书的人，我想感谢Q Kuhns的不懈努力，在语法上的编辑和对我的支持。感谢Erik Trom的耐心和对细节的关注，感谢Nate Murray 的乐观和清晰的思维。特别要感谢Hack Reactor的全体成员和2013年暑期给我提供研究如何有条理的教学AngularJS的空间。我也要感谢我的30x500校友，Sean Iams,Michael Fairchild,Bradly Green,Misko Hevery和AirPair团队。最后，我要感谢我们此书发行前期给过帮助的人，我们得到了业界极大的支持和帮助，再此特别感谢Philip Westwell,Saurabh Agrawal,Dougal MacPherson
+
+###关于作者
+Ari Lerner是fullstack.io的联合创始人，Fullstack建立在加州的旧金山。他曾在AT&T位于加州的帕洛阿尔托创新中心工作了五年，建立了庞大的云基础并帮助设计前沿开发者中心，包括设计开放的APIs和开发者工具箱.他和他的团队使公司工作流程和内部程序现代化，这让他们在AT&T 2012年度报告中表现突出。他从AT&T离职继续从事建立Fullstack.io，一个全栈的软件开放产品，同时经营专注于从硬件到浏览器的全部堆栈的服务公司.他与美丽的女友和一只可爱的狗居住在旧金山。
+ 
