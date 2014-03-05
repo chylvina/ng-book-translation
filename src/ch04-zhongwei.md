@@ -16,7 +16,7 @@ function MyController($scope){
 </pre>
   
 在本章中，我们将会讨论如何编写高效的、可部署的controllers，我们将这种封装功能性的代码的模块单元称为module。  
-在Angular中，模块是实现AngularJs app的主要方式。AngularJs app的module将包含我们项目中的所有代码，一个app可能包含很多modules，每一个module会实现不同的功能。  
+在Angular中，module(模块)是构建AngularJs app的主要方式。AngularJs app的module将包含我们项目中的所有代码，一个app可能包含很多modules，每一个module会实现不同的功能。  
 使用modules的方式给我带来很多好处，例如：  
 
    * 不会污染全局命名空间
@@ -31,8 +31,8 @@ angular.module('myApp',[]);
 </code>
 </pre>
 #####Modules
-<img style="display:block;float:left;"src="http://ringtail.u.qiniudn.com/a7cb450a6d11dac070b3f0963bb4a7db.png"/>
-<p style="padding-top:25px">这个方法是Angular module的<i>setter</i>方法,我们可以通过这种方式定义模块<p>  
+<img style="display:block;float:left;"src="http://ringtail.u.qiniudn.com/ng-book-00"/>
+<p style="padding-top:25px;margin-left:30px;">这个方法是Angular module的<i>setter</i>方法,我们可以通过这种方式定义模块<p>  
 我们也可以通过只传递module名称的方式，用这个方法来引用module，例如我们可以像这样来引用myApp module:  
 <pre>
 <code>
@@ -40,12 +40,12 @@ angular.module('myApp',[]);
 angular.module('myApp')
 </code>
 </pre>
-<img style="display:block;float:left;"src="http://ringtail.u.qiniudn.com/a7cb450a6d11dac070b3f0963bb4a7db.png"/>
-<p style="padding-top:25px">这个方法就是所谓的<i>getter</i>方法,我们可以通过这种方式引用模块<p>  
+<img style="display:block;float:left;"src="http://ringtail.u.qiniudn.com/ng-book-00"/>
+<p style="padding-top:25px;margin-left:30px;">这个方法就是所谓的<i>getter</i>方法,我们可以通过这种方式引用模块<p>  
 到目前为止，我们就可以在angular.module('myApp')之上构建我们的应用了。  
 构建大型的应用，我们可能需要创建很多不同的模块来实现复杂的业务逻辑。将不同的业务逻辑进行抽离，封装为不同的module，可以使我们的更容易进行测试。想要获得更多关于如何编写高可用的module,请参考architecture 章节
 ###Properties
-Angular modules有很多可以调用的属性
+Angular module有很多用来区分不同module的属性
 ####name(string)
 modules的的name属性会返回一个字符串，代表当前module的名字
 ####requires（array of string)
