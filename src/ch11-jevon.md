@@ -30,8 +30,8 @@ angular.application('myApp', [])
 
 当Angular启动我们的应用时，会注册这个返回的对象，并且以传入的第一个参数将其命名。Angular编译器在查找指令时，会分析我们的主HTML文档，查找DOM中使用了这个名称的元素、属性（attribute）、注释或者class名称。当它找到匹配的元素时，将会使用指令定义把DOM元素放置在页面中。
 
-<pre>
+```
 <div my-directive></div>
-</pre>
+```
 
 
