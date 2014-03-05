@@ -22,3 +22,4 @@
 - primitive pieces 原始件？
 - Bootstrapped ？
 - scope link DOM ? scope 链接 dom
+- response signature 响应 ??
