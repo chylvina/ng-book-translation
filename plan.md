@@ -9,7 +9,7 @@ ch05 Scopes                                | 5      | zhognwei        |
 ch06 Controllers                           | 3      | yeqin           | xiongliang
 ch07 Expressions                           | 2      | yeqin           |
 ch08 Filters                               | 9      | zhizhong        |
-ch09 Introduction to Directives            | 12     | mengmeng        |
+ch09 Introduction to Directives            | 12     | mengmeng        | xiongliang
 ch10 Built-In Directives                   | 5      | xintong         |
 ch11 Directives Explained                  | 25     | wenwen          |
 ch12 Angular Module Loading                | 3      | wenwen          |
