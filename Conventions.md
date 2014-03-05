@@ -22,3 +22,5 @@
 - primitive pieces 原始件？
 - Bootstrapped ？
 - scope link DOM ? scope 链接 dom
+- Boolean-like Attributes ? 类布尔属性？
+- interpolation 插值
