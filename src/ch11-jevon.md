@@ -68,3 +68,8 @@ angular.module('myDirective', function() {
 <-- as an attribute --><div my-directive></div><-- or as an element -->
 <my-directive></my-directive>```
 属性（Attribute）是默认的且最通用的指令形式，因为它能够兼容所有浏览器，包括老版本的IE，也不需要在文档头部注册新的标签。可参见`AngularJS 与 Internet Explorer`章节获取更多关于此问题的信息。
+```
+尽量避免使用注释来声明一个指令，这种格式最早被作为定义包含多个DOM元素的指令的一种方法。当`ng-repeat`包含一个`<table>`元素时，这种方法显得非常有用；然而，从Angular 1.2开始，`ng-repeat`提供了`ng-repeat-start`和`ng-repeat-end`作为这种问题的更好的解决方案，最小化了注释形式的指令需求。当然，如果你很好奇，可以在使用ng-repeat时打开Chrome开发者工具的`元素`标签，看看注释的使用。
+```
+
+元素还是属性（Attribute）？
