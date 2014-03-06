@@ -28,24 +28,22 @@ Angular提供了一套内置指令。某些指令覆盖内置的html元素，如
 
 HTML specification31 将布尔属性定义为：一个代表真假（true/false）值的属性。当属性存在，则该属性的值被假定为true（不管它的实际值是什么）。如果不存在，则属性值为false 。
 
-通过数据绑定进行动态数据。。。时，我们不能简单的设定属性值为true或者false,因为当属性不存在时为false？？？。因此，Angular提供了一个ng-前缀的版本???
+当通过Angular的数据绑定进行动态数据操作时，我们不能简单的设定属性值为true或者false,因为当该属性不存在时它的值为false。因此，Angular为这些属性提供了一个ng-前缀的版本，用来为元素添加或删除通过表达式计算出来的正确布尔属性
 
-When working with dynamic data via data bindings in Angular, we cannot simply set the value of the attribute to true or false, because by definition of the spec, the attribute is false if it is not present. Thus Angular provides an ng-prefixed version of these attributes that will evaluate the expression provided to insert or remove the corresponding boolean attribute on the decorated element.
 
 #### ng-disabled
 用ng-disabled来绑定以下表单项的disabled属性：
-- <input> (text, checkbox, radio, number, url, email, submit)
-- <textarea>
-- <select>
-- <button>
+- input (text, checkbox, radio, number, url, email, submit)
+- textarea
+- select
+- button
 
 当使用普通的HTML表单项时，表单项的disabled属性代表此字段禁用。可以使用ng-disabled来控制disabled这个属性是否生效。
 
-例如，如果用户未在文本框中输入值，禁用下方的按钮
+例如，如果用户未在文本框中输入值，禁用下方的按钮：
 
-code。。。
 
-在下一个例子中，我们禁用文本框5秒钟，直到isDisabled属性在$timeout函数中变为true  。
+在下一个例子中，我们禁用文本框5秒钟，直到isDisabled属性在$timeout函数中变为true 。
 
 
 #### ng-readonly
@@ -63,11 +61,10 @@ code。。。
 #### ng-selected
 使用ng-selected指令为option标签指定是否存在selected属性
 
-### Boolean-like Attributes
-。。。。,ng-href和ng-src以类似于布尔属性的方式。。。。因此ng布尔属性。。。。？？？
-While not technically HTML, boolean attributes like the ng-href and ng-src act in a similar manner and are therefore defined alongside the ng boolean attributes within the Angular source code and presented here.
+### Boolean-like Attributes 类似布尔类型的属性
+在Angular的定义和介绍中，像ng-href和ng-src这类属性的处理方式与布尔属性相似，因此将他们视为与布尔属性等同的属性。
 
-当程序尚未解析代码之前，ng-href和ng-src能够很好的提高渲染效率和防止错误发生，因此推荐使用ng-href和ng-src来代替href和src。
+当代码尚未被程序解析之前，ng-href和ng-src能够很好的提高渲染效率，并且防止错误发生，因此推荐使用ng-href和ng-src来代替href和src。
 
 #### ng-href
 当从当前作用域的一个属性动态的创建一个URL，通常使用ng-href代替href。在插值{{}}未被替换之前，用户可能会点击href生成的链接，这样将跳转到错误的页面（通常是404页面）。
