@@ -2,25 +2,39 @@
 ## AngularJS和IE
 
 AngularJS works seamlessly with most modern browsers. Safari, Google Chrome, Google Chrome Canary, and Firefox work great. The notorious Internet Explorer version 8 and earlier can cause us problems.
-`AngularJS能很好地兼容常见的现代浏览器，比如Safari，Chrome，Chrome Canary和Firefox。但在臭名昭著的IE8及以下版本的浏览器中，我们可能会遇到一些问题。`
+AngularJS能很好地兼容常见的现代浏览器，比如Safari，Chrome，Chrome Canary和Firefox。但在臭名昭著的IE8及以下版本的浏览器中，我们可能会遇到一些问题。
 
 
 For more information, read the AngularJS docs guide on IE124.
-`注：想了解更多关于这方面的信息，可以阅读AngularJS文档指南中的IE124（这里有一个跳转）`
+
+注：想了解更多关于这方面的信息，可以阅读AngularJS文档指南中的IE124（这里有一个跳转）
+
 
 
 If we are planning release our applications for Internet Explorer v8.0 or earlier, we need to pay some
 extra attention to help support it.
-`如果大家想在IE8之前的浏览器中运行AngularJS，我们需要一些额外的支持。`
+
+如果大家想在IE8之前的浏览器中运行AngularJS，我们需要一些额外的支持。
+
+
 
 Internet Explorer does not like element names that start with a prefix ng: because it considers the prefix to be an XML namespace. IE will ignore these elements unless the elements have a corresponding namespace declaration:
-`IE不能很友好的支持带ng:的前缀，因为IE会认为这是一个XML命名空间，它会忽略这个前缀，除非该元素有一个类似下面这样的命名空间声明：`
+
+IE不能很友好的支持带ng:的前缀，因为IE会认为这是一个XML命名空间，它会忽略这个前缀，除非该元素有一个类似下面这样的命名空间声明：
+
+```html
 <html xmlns:my="ignored">
+```
+
+
 This xmlns:ng=”http://angularjs.org” makes IE feel more comfortable.
-`注：xmlns:ng="http://angularjs.org"能让AngularJS更好的工作`
+
+注：xmlns:ng="http://angularjs.org"能让AngularJS更好的工作
+
 
 If we use non-standard HTML tags, we need to create the tags in the head of the document if we want IE to recognize them. We can do so simply in the head element.
-`如果大家使用非标准的HTML标签，我们需要在header标签中使用JavaScrit来创建这个标签，比如下面这样：`
+
+如果大家使用非标准的HTML标签，我们需要在header标签中使用JavaScrit来创建这个标签，比如下面这样：
 
 ```html
 <!doctype html>
@@ -35,21 +49,29 @@ If we use non-standard HTML tags, we need to create the tags in the head of the 
   <body>
 <!-- ... -->
 ```
+
 It is recommended that we use the attribute directive form, as we don’t need to create custom elements to support IE:
-`建议大家使用属性标签，因为我们并不需要创建自定义元素就能支持IE浏览器`
+
+建议大家使用属性标签，因为我们并不需要创建自定义元素就能支持IE浏览器
 
 备注：124 http://docs.angularjs.org/guide/ie
 
 
+```html
 <div data-ng-view></div>
+```
+
+
 To make AngularJS work with IE7 and earlier, we need to polyfill JSON.stringify. We can use the
 JSON3125 or JSON2126 implementations.
-`为了使IE7或更早的版本支持AngularJS，我们需要一个JSON.stringify补丁，我们可以使用JSON3125(注) 或者 JSON2126(注) 的实现`
+
+为了使IE7或更早的版本支持AngularJS，我们需要一个JSON.stringify补丁，我们可以使用JSON3125(注) 或者 JSON2126(注) 的实现
 
 
 In our browser, we need to conditionally include this file in the head. We must download the file,
 store it in a location relative to the root of our application, and reference it in the head, like so:
-`我们需要在head中用条件注释来加载它，引用位于网站根目录的相对位置，比如下面这样： `
+
+我们需要在head中用条件注释来加载它，引用位于网站根目录的相对位置，比如下面这样：
 
 ```html
 <!doctype html>
@@ -59,11 +81,20 @@ store it in a location relative to the root of our application, and reference it
     <![endif]-->
 </head> <body>
 ```
+
 <!-- ... -->
-To use the ng-app directive with IE support, we set the element id to ng-app, as well. <body id="ng-app" ng-app="myApp">
+To use the ng-app directive with IE support, we set the element id to ng-app, as well. 
+
+为了使ng-app支持IE,我们设置了ng-app的id
+<body id="ng-app" ng-app="myApp">
 <!-- ... -->
 We can take advantage of the angular-ui-utils library’s ie-shiv module to help give us custom elements in our DOM.
-In order to use the ui-utils ie-shiv library, we need to ensure that we have the angular-ui library installed. Installation is easy if we download the ui-utils library and include the module. We can find the ui-utils library on GitHub here: https://github.com/angular-ui/ui-utils127.
+In order to use the ui-utils ie-shiv library, we need to ensure that we have the angular-ui library installed. 
+
+
+
+
+Installation is easy if we download the ui-utils library and include the module. We can find the ui-utils library on GitHub here: https://github.com/angular-ui/ui-utils127.
 Let’s ensure that we’ve included the ui-utils module in an accessible location to your app and include the file just like this:
 ￼125http://bestiejs.github.io/json3/ 126https://github.com/douglascrockford/JSON- js 127https://github.com/angular- ui/ui- utils
 AngularJS and Internet Explorer 514
