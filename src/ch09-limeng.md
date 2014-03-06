@@ -89,9 +89,10 @@ Can still take children nodes
 让我们开始吧。
 
 ### Bootstrapped HTML
-当浏览器加载我们的HTML时且载入Angular，我们只需要一段代码启动我们的Angular应用（我们在 introductory chapter 章节已经学习过了）。
-在我们的HTML中使用内置的ng-app指令标记我们的根节点。这个指令作为一个属性来使用，因此，我们可以把它插入任何地方，但我们选择&lt;HTML&gt;的超始标签，这是规范：
-A built-in directive is one that ships out of the box with Angular.所有的内置指令以ng为命名空间前缀。为了避免命名空间冲突，请不要使用ng做前缀自定义指令名称。
+当浏览器加载包含Angular的HTML页面时，我们只需要一段代码启动我们的Angular应用（我们在 introductory chapter 章节已经学习过了）。
+在HTML中使用内置的ng-app指令标记我们应用的根节点。这个指令作为一个属性来使用，因此，我们可以把它插入到任何地方，但我们选择&lt;HTML&gt;的起始标签，这样更规范：
+
+*Angular为我们提供了可以直接使用的内置指令，所有的内置指令以ng命名空间为前缀。为了避免命名空间冲突，请不要使用ng做自定义指令名称的前缀。*
  
 <pre>
 <code>
@@ -101,12 +102,12 @@ A built-in directive is one that ships out of the box with Angular.所有的内�
 </code>
 </pre>
 
-现在，在&lt;html&gt;元素里，我们可以使用任何我们想要的内置或自定义指令。 此外，在JavaScript代码中，在这个根元素范围内使用的所有指令都可以获取以$rootScope作为原型继承的scope，该指令的方法可以访问此scope。当scope可以访问时，意味着scope已经与DOM链接完成，这个过程是在指令周期将要结束时完成的。
+在&lt;html&gt;元素里，我们可以使用任何我们想要的内置或自定义指令。 此外，基于JavaScript代码中的原型继承原理，在根元素范围内使用的所有指令都可以访问$rootScope，前提是该指令的方法可以访问scope。在这种情况下，可以访问scope的意思是，scope已经与DOM链接完成，这在指令周期的后期完成。
 
-因为一个指令的生命周期是很复杂的，需要做为一节来介绍。在这一节中，我们还将讨论指令中的哪些方法可以访问scope以及指令中如何共享scope。查看directives explained章节获取更多信息。
+因为一个指令的生命周期是很复杂的，需要做为一节内容来介绍。在那一节中，我们还将讨论指令中的哪些方法可以访问scope以及指令中如何共享scope。查看directives explained章节获取更多信息。
 
-### 首个指令
-让我们的湿脚的最快方法是迈进水里。让我们继续前进，实现一个简单的自定义指令。稍后我们将会定义如下的HTML元素：
+### 我们的第一个指令
+让我们鞋子湿掉的最快方法是跳进水里。让我们继续前进，实现一个简单的自定义指令。稍后我们将会定义如下的HTML元素：
 
 <pre>
 <code>
@@ -114,11 +115,12 @@ A built-in directive is one that ships out of the box with Angular.所有的内�
 </code>
 </pre>
 
-前提是我们已经创建了一个HTML文档，并引入了Angular，
-而且在我们的应用中，已将ng-app指令标记在了DOM的根元素上，当Angular编译我们的HTML时，会调用这个指令。
-	我们将进一步了解指令周期的编译过程在understanding compile章节。
+假设我们已经创建了一个HTML文档，并引入了Angular，而且在我们的应用中，已将ng-app指令标记在了DOM的根元素上，当Angular编译我们的HTML时，会调用这个指令。
 
-调用指令意味着执行我们通过指令定义的JavaScript。
+*我们将在understanding compile章节进一步了解指令周期的编译过程。*
+
+调用指令意味着执行我们通过指令声明定义的JavaScript。
+
 myDirective指令定义如下所示：
 
 <pre>

@@ -9,13 +9,13 @@ ch05 Scopes                                | 5      | zhognwei        |
 ch06 Controllers                           | 3      | yeqin           | xiongliang
 ch07 Expressions                           | 2      | yeqin           |
 ch08 Filters                               | 9      | zhizhong        |
-ch09 Introduction to Directives            | 12     | mengmeng        |
+ch09 Introduction to Directives            | 12     | mengmeng        | xiongliang
 ch10 Built-In Directives                   | 5      | xintong         |
 ch11 Directives Explained                  | 25     | wenwen          |
 ch12 Angular Module Loading                | 3      | wenwen          |
 ch13 Multiple Views and Routing            | 13     | shuwei          |
 ch14 Dependency Injection                  | 7      | xiongliang      |
-ch15 Services                              | 7      | lihui           |
+ch15 Services                              | 17     | lihui           |
 ch16 Communicating with the Outside ...    | 32     |                 |
 ch17 XHR in Practice                       | 16     | liuqi           |
 ch18 Promises                              | 8      | liuqi           |
