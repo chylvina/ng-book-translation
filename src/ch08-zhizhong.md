@@ -539,6 +539,62 @@ return input[0].toUpperCase() + input.slice(1);
 {{ 'ginger loves dog treats' | lowercase | capitalize }}
 ```
 
+## 表单验证
+
+> When taking input from our users, it’s important to show visual feedback on their input.
+
+当用户在填写表单的时候，对填写内容的验证反馈是很重要的。
+
+> In the context of human relationships, form validation is just as much about giving feedback as well as getting the “right” input.
+
+借鉴人和人之间的关系，表单验证就像是获取反馈并获得正确输入一样。
+
+> Not only does it provide positive feedback for our user, it will also semi-protect our web app from bad or invalid input.
+
+它不仅对用户来说是积极的反馈，同时也能保护我们的web-app免受错误或无效输入的干扰。
+
+> We can only protect our back end as much as is possible with our web front end.
+
+只能通过前端的努力，保护后端程序成为可能。
+
+> Out of the box, AngularJS supports form validation with a mix of the HTML5 form validation inputs as well as with its own validation directives.
+
+AngularJS对表单验证，支持使用HTML5的验证标签和AngularJS提供的验证指令混合使用。
+
+> There are many form validation directives available in AngularJS. We’ll talk about a few of the core validations, then we’ll get into how to build your own validations.
+
+在AngularJS中有很多表单验证指令。我们会讨论一部分核心的验证指令，后续还会深入研究如何创建自己的验证指令。
+
+```
+<form name="form" novalidate>
+<label name="email">Your email</label>
+<input type="email" name="email" ng-model="email" placeholder="Email Address" />
+</form>
+```
+
+> AngularJS makes it pretty easy for us to handle client-side form validations without adding a lot of extra effort.
+
+没做很多额外的工作，AngularJS就为我们搞定了客户端的表单验证。
+
+> Although we can’t depend on client-side validations to keep our web application secure, they do provide instant feedback of the state of the form.
+
+虽然我们不能依赖客户端的验证来保持web-app的安全，但它对表单输入提供了即时的反馈。
+
+> To use form validations, we first must ensure that the form has a name associated with it, like in the above example.
+
+使用表单验证，我们首先要确保该表单有一个名字与之关联，就像上面栗子中的写法。
+
+> All input fields can validate against some basic validations, like minimum length, maximum length, etc. These are all available on the new HTML5 attributes of a form.
+
+所有的输入域都可以使用HTML5中提供的新的表单验证属性，来做一些基础的验证，比如最小长度，最大长度等等。
+
+> It is usually a great idea to use the novalidate flag on the form element, as it prevents the browser from natively validating the form.
+
+
+
+
+
+
 
 
 
