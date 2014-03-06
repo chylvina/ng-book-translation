@@ -34,14 +34,10 @@ angular.application('myApp', [])
 <div my-directive></div>
 ```
 
-```
-为了避免和未来的HTML标准冲突，最好的做法是通过给自定义的指令一个前缀来定义其命名空间。Angular本身已经占用了`ng-`前缀，所以请使用其它前缀。在下面的例子中，我们将使用`my-`前缀(比如`my-directive`)。
-```
+> 为了避免和未来的HTML标准冲突，最好的做法是通过给自定义的指令一个前缀来定义其命名空间。Angular本身已经占用了`ng-`前缀，所以请使用其它前缀。在下面的例子中，我们将使用`my-`前缀(比如`my-directive`)。
 
 我们为一个指令定义的factory函数只会在编译器第一次匹配到指令时被调用*一次*。和 `.controller`函数一样，我们使用`$injector.invoke`调用指令的factory函数。当Angular在DOM中发现已命名的指令时，它将通过指令名称在我们注册过的对象中查找并调用我们已经注册过的指令定义。指令的生命周期便从这里开始，以`$compile`方法开始，以`link`方法结束。我们将在后面的章节对这个过程一探究竟。
-让我们来看看我们提供给指令定义的所有可用的选项。
-```一个JavaScript对象由keys和values组成。当一个指定的key被赋值为一个string, boolean, number, array或者object时，我们可以把这个key称之为*属性*。当我们把这个key赋值为一个函数，我们则称之为*方法*
-```所有可选的选项已经在下面列出。每一个key的值标识出了可以配置的方法或属性的类型：
+让我们来看看我们提供给指令定义的所有可用的选项。> 一个JavaScript对象由keys和values组成。当一个指定的key被赋值为一个string, boolean, number, array或者object时，我们可以把这个key称之为*属性*。当我们把这个key赋值为一个函数，我们则称之为*方法*所有可选的选项已经在下面列出。每一个key的值标识出了可以配置的方法或属性的类型：
 ```angular.module('myApp', [])
 .directive('myDirective', function() {	return {	restrict: String,	priority: Number,	terminal: Boolean,	template: String or Template Function:		function(tElement, tAttrs) (...}, templateUrl: String,	replace: Boolean or String,	scope: Boolean or Object, transclude: Boolean,	controller: String or		function(scope, element, attrs, transclude,otherInjectables) { ... },	controllerAs: String,	require: String,	link: function(scope, iElement, iAttrs) { ... }, 
 	compile: return an Object OR		function(tElement, tAttrs, transclude) { 
@@ -68,8 +64,8 @@ angular.module('myDirective', function() {
 <-- as an attribute --><div my-directive></div><-- or as an element -->
 <my-directive></my-directive>```
 属性（Attribute）是默认的且最通用的指令形式，因为它能够兼容所有浏览器，包括老版本的IE，也不需要在文档头部注册新的标签。可参见`AngularJS 与 Internet Explorer`章节获取更多关于此问题的信息。
-```
-尽量避免使用注释来声明一个指令，这种格式最早被作为定义包含多个DOM元素的指令的一种方法。当`ng-repeat`包含一个`<table>`元素时，这种方法显得非常有用；然而，从Angular 1.2开始，`ng-repeat`提供了`ng-repeat-start`和`ng-repeat-end`作为这种问题的更好的解决方案，最小化了注释形式的指令需求。当然，如果你很好奇，可以在使用ng-repeat时打开Chrome开发者工具的`元素`标签，看看注释的使用。
-```
+
+> 尽量避免使用注释来声明一个指令，这种格式最早被作为定义包含多个DOM元素的指令的一种方法。当`ng-repeat`包含一个`<table>`元素时，这种方法显得非常有用；然而，从Angular 1.2开始，`ng-repeat`提供了`ng-repeat-start`和`ng-repeat-end`作为这种问题的更好的解决方案，最小化了注释形式的指令需求。当然，如果你很好奇，可以在使用ng-repeat时打开Chrome开发者工具的`元素`标签，看看注释的使用。
+
 
 元素还是属性（Attribute）？
