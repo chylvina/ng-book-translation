@@ -27,4 +27,40 @@ manifest.json文件描述了与应用有关的元数据，比如：*名称、描
 
 ## 创建Chrome应用
 
-这一节，我们将使用Angular随便创建一个高级Chrome应用。
+这一节，我们将使用Angular轻松创建一个高级Chrome应用。我们将模拟创建一个有意思的名叫*[Currently](https://chrome.google.com/webstore/detail/currently/ojhmphdkpgbibohbnpbfiefkgieacjmh)*的Chrome网页应用，作者团队来自*[Rainfall](http://blog.rainfalldesign.com/)*。
+
+![Currently](此处有图片，见原版)
+
+我们给即将模拟创建的应用叫做*Presently*吧。
+
+###构建Presently
+
+创建Presently之前，我们需要考虑应用程序的结构。这样做的话，在开始编码的时候，有利于开拓我们创建应用的思路。
+
+像*Currently*一样，*Presently*也是一个“newtab”应用，意味着我们每次打开一个新的标签页的时候，它都会运行。
+
+*Presently*有两个主界面：
+
+* 首屏界面
+
+这一屏的特点是展示了当前的时间和天气。在天气的旁边还标注了一些天气图标。
+
+* 设置界面
+
+这一屏允许用户在应用中改变他们的地点定位。
+
+为了实现首屏界面的功能，我们需要给定一个恰当格式的日期和时间，并且通过远程API服务获取到天气数据。
+
+要实现设置界面的功能，我们必须利用远程API服务把自动建议位置的功能整合到一个输入框里。
+
+最后，我们使用基础的本地存储（会话存储）功能将用户设置保存在应用中。
+
+##搭建骨架
+
+我们将建立一个这样的文件结构来创建我们的应用：
+
+![文件结构](此处有图片，见原版)
+
+我们把CSS文件放在*css/*目录下，把自定义字体放在*font/*目录下，把JavaScript文件放在*js/*目录下。我们将*js/app.js*文件设为JavaScript主文件，把应用的HTML内容放在根目录的*tab.html*文件中。
+
+![tips](此处有图片，见原版)有些不错的工具可以帮助启动Chrome应用扩展程序，比如*[Yeoman](http://yeoman.io/)*。
