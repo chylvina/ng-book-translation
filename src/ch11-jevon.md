@@ -102,3 +102,5 @@ angular.module('myDirective', function() {
 `terminal`是一个布尔类型的选项，可以设定为true或false。
 
 我们使用`terminal`选项来告诉Angular停止调用其它更高优先级的指令。当然，所有相同优先级的指令将被执行。
+
+所以，如果一个元素已经有被标记为terminal的指令，那么不要再使用其它有较低优先级的被标记为terminal的指令 —— 因为这个指令是不会被调用的。

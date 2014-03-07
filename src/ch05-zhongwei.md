@@ -86,9 +86,9 @@ ng-controllers dirctive为当前的元素创建了一个新的$scope，而这个
 <img style="display:block;float:left;"src="http://ringtail.u.qiniudn.com/ng-book-00"/>
 <p style="padding-top:5px">我们将会在Expressions章节中深入学习expressions。在scope中的表示式就是我们设置scope变量的位置。当我们想像上面的代码中设置name属性，我们只需要使用：$scope.name="Ari"<p>    
 ###Creation
-当我们创建一个controller或者directive，angular会调用$injector创建一个新的作用域，并在代码运行的时候将这个作用域传递给controller或者dirctive
+当我们创建一个controller或者directive，angular会在运行时调用$injector创建一个新的作用域，并将这个作用域传递给controller或者dirctive
 ###Linking
-当$scope链接到view的时候，由directives创建的scope会自动被父scope监听，任何从view到dirctive的变化都会被监听
+当$scope链接到view的时候，所有由directives创建的scope会自动被父scope监听，任何从view到dirctive的变化都会被监听
 ###Update
 在$digest在$rootScope中执行的时候，所有的子scope都会进行脏数据的校检，一旦有任何的改变都会触发监听注册的表达式。
 ###Destruction
