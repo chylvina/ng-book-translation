@@ -88,11 +88,12 @@ ng-controllers dirctive为当前的元素创建了一个新的$scope，而这个
 ###Creation
 当我们创建一个controller或者directive，angular会在运行时调用$injector创建一个新的作用域，并将这个作用域传递给controller或者dirctive
 ###Linking
-当$scope链接到view的时候，所有由directives创建的scope会自动被父scope监听，任何从view到dirctive的变化都会被监听
+当$scope被链接到视图的时候，所有创建scope的directives会将其监听器注册到父scope上。这些监听器会监听从视图层到指令的数据模型变化并进行传播。
 ###Update
-在$digest在$rootScope中执行的时候，所有的子scope都会进行脏数据的校检，一旦有任何的改变都会触发监听注册的表达式。
+当$digest循环在$rootScope中执行的时候，所有的子scope都会进行脏数据的校检。这时会检查所有监听表达式是否有变化，一旦发现任何的变化，scope都会调用监听者的回调函数。
 ###Destruction
-当一个$scope不在需要的时候，会调用scope.destroy()方法清理其下的所有scope，另外当一个scope被销毁了，$destory事件会被broadcast
+当一个$scope不在需要的时候，该scope的创建者会调用scope.$destroy()方法清理该scope。
+注意当一个scope被销毁了，$destory事件会被广播。
 ###directives and Scopes
 Directives会在angluar程序中广泛使用，通常情况下无需创建属于他们自己的作用域，但是这取决于这个directive的用途。例如：ng-controller 和 ng-repeat direcitve 会创建属于他们的子scope，并且将scope绑定到dom元素上。  
 但是在我们学习更多时候，我们需要了解什么是controllers,我们如何在我们的程序中使用。
