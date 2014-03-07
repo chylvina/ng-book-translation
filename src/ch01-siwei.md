@@ -17,4 +17,24 @@ Dan Wahlin Wahlin 参阅<http://weblogs.asp.net/dwahlin1>与<http://twitter.com/
 
 ###关于作者
 Ari Lerner是fullstack.io的联合创始人，Fullstack建立在加州的旧金山。他曾在AT&T位于加州的帕洛阿尔托创新中心工作了五年，建立了庞大的云基础并帮助设计前沿开发者中心，包括设计开放的APIs和开发者工具箱.他和他的团队使公司工作流程和内部程序现代化，这让他们在AT&T 2012年度报告中表现突出。他从AT&T离职继续从事建立Fullstack.io，一个全栈的软件开放产品，同时经营专注于从硬件到浏览器的全部堆栈的服务公司.他与美丽的女友和一只可爱的狗居住在旧金山。
+
+###关于本书
+ng-book:The Complete Book on AngularJS 为你提供了成为AngularJS高手的解决方案。AngularJS是Google的一个团队推出的一项前端框架技术。它能让你快速简单的建立丰富的前端体验。
+ng-book:The Complete Book on AngularJS 提供了一些你需要了解AngularJS并迅速创立印象深刻的网页体验的前沿工具，本书提出了挑战，也提供了实在的技术供你在网页应用中迅速使用。
+本书涵盖了很多知识点，能够帮助你建立运行完美的专业网页APPS：
+
+- 与RESTful网页服务互动
+- 建立用户可重复利用的组件
+- 测试
+- 异步编程
+- 建立服务
+- 提供高级可视化
+
+
+此书的目的是不仅让读者清楚的了就AngularJS如何工作，还提供一些专业代码片段以供读者根据自己的应用建立和修改。
+利用这些工具盒测试，你可以利用AngularJS钻研建立自己的动态网络应用，并且是可以扩展的。
+
+
+###关于读者
+
  
