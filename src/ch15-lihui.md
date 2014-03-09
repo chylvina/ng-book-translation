@@ -436,3 +436,310 @@ angular.service('personService', Person);
 技术上，factory()函数是简写通过provider()方法创造一个service，其中$get()函数是传入的函数。
 
 这两个方法调用功能相同，将创建相同的服务。
+
+<pre><code>
+
+angular.module('myApp').factory('myService', function() {
+
+  return {
+
+    'username': 'auser'
+
+  }})
+
+// 这个和上面的 factory()相同效果
+
+.provider('myService', {
+
+  $get: function() {
+
+          return {
+
+            'username': 'auser'
+
+          }
+
+      }
+
+});
+
+</code></pre>
+
+为什么我们有了factory()方法还要使用provider()方法？
+
+因为我们有时候我们会通过provider()使用Angular的config()函数返回外部配置。不同于其他的创建方法，我们可以注入一个特殊属性到config()方法。
+
+比如说，我们要配置我们之前的那个githubService：
+
+<pre><code>
+
+// 注册这个服务 `.provider`
+
+angular.module('myApp', []).provider('githubService', function($http) {
+
+  var githubUrl = 'https://github.com'
+
+  setGithubUrl: function(url) {
+
+    if (url) { githubUrl = url }
+
+  }
+  method: JSONP,
+
+  $get: function($http) {
+
+    self = this;
+
+    return $http({
+
+      method: self.method,
+
+      url: githubUrl + '/events'
+
+    });
+
+  }
+
+});
+</code></pre>
+
+通过使用provider() 方法，我们在多个应用中使用我们的service更加灵活。
+
+在上面的例子，provider()方法创建一个的provider，要在后面加一个字符串‘Provider’注入到config()函数。
+
+<pre><code>
+
+angular.module('myApp', []).config(function(githubServiceProvider) {
+
+  githubServiceProvider.setGithubUrl("git@github.com");
+
+})
+
+</code></pre>
+
+如果你想配置我们的service，我们可以用provider()
+
+provider()提供2个参数：
+
+  * name (string)
+
+name参数我们作为providerCache关键，使用name＋ Provider 作为service的实例名。
+
+例如我们定义一个名为githubService的服务，那么使用时要用githubServiceProvider。
+
+ * aProvider (object/function/array)
+
+aProvider有几种不同的形式：
+
+如果aProvider是一个函数，那么这个函数通过依赖注入执行并且返回一个$get对象。
+
+如果aProvider是一个数组，那么它会处理它们的依赖关系，并且在最后一个参数是数组的时候，返回一个$get对象。
+
+如果aProvider是一个对象，对象中要有一个$get方法。provider()函数返回一个对象,他是注册过的provider实例。最原始的创建service是直接使用provider()：
+
+<pre><code>
+
+// 直接在module对象上创建一个提供者的例子。
+
+angular.module('myApp',[]).provider('UserService', {
+
+  favoriteColor: null,
+
+  setFavoriteColor: function(newColor) {
+
+    this.favoriteColor = newColor;
+
+  },
+
+  // $get函数起注入作用
+
+  $get: function($http) {
+
+    return {
+
+      'name': 'Ari',
+
+      getFavoriteColor: function() {
+
+        return this.favoriteColor || 'unknown';
+
+      }
+
+    }
+
+  }
+
+});
+
+</code></pre>
+
+创建这样一个service，我们必须返回一个对象，它具有$get()函数定义; 否则，导致错误。
+
+我们可以通过注入器来实例化(虽然我们会永远直接实例它是不可能的，例如Angular自己做这件事)
+
+<pre><code>
+
+// 获得注射器
+var injector = angular.module('myApp').injector();
+
+// 调用我们的service
+
+injector.invoke(['UserService', function(UserService) {
+
+    // {
+
+    // 'name': 'Ari',
+
+        //  getFavoriteColor: function() {}
+
+    // }
+
+}]);
+
+</code></pre>
+
+provide()功能非常强大，当我们在使用和共享我们的service时。
+
+同样重要的是在我们创建service时我们要了解constant() 和 value() 方法。
+
+#constant()
+
+它可以注入一个先有的值作为一个service，我们可以注入到我们应用中的其他部分。例如我们要设置一个APIKEY的service。我们这里有应该使用 constant()。
+
+constant()有两个参数：
+
+ * name (string)
+
+这个参数是定义注入constant的名字
+
+ * value (constant value)
+
+这个参数是定义注入constant的值
+
+constant()返回一个注册过的service
+
+<pre><code>
+
+  angular.module('myApp').constant('apiKey', '123123123')
+
+</code></pre>
+
+现在我们可以将此值像其他service一样进行注入
+
+<pre><code>
+
+angular.module('myApp').controller('MyController',function($scope, apiKey) {
+
+  $scope.apiKey = apiKey;
+
+});
+
+</code></pre>
+
+#value()
+
+如果我们的service返回的的是一个常数，我们并不需要去定义一个完整的服务。我们可以用value()方法去之策service。
+
+ value()有2个参数：
+
+   * name (string)
+
+ 这个参数是定义注入value的名字
+
+  * value (constant value)
+
+ 这个参数是定义注入value的值
+
+ value()返回一个注册过的service
+
+<pre><code>
+
+ angular.module('myApp').value('apiKey', '123123123');
+
+</code></pre>
+
+
+#When to Use Value or Constant
+
+value()和constant()的区别在于，constant()一旦成功注入，则不可再改改变。
+
+相反，constant不能以函数和对象作为注入值。
+
+通常我们经常会用value()来注入对象和函数，配置数据用constant()来注入。
+
+<pre><code>
+
+angular.module('myApp', [])
+
+.constant('apiKey', '123123123')
+
+.config(function(apiKey) {
+  // apiKey 会被解析为 123123123
+})
+
+.value('FBid', '231231231')
+
+.config(function(FBid) {
+
+  //这里会抛一个异常：FBid 你允许访问
+
+});
+
+</code></pre>
+
+#decorator()
+
+$provide为我们提供了一种拦截服务实例的创建。decorator()使我们能扩展或者重写我们的实例。
+
+decorator()非常强大，它不但可以对我们自己的定义的service进行修改，也可以对Angular自己的核心service进行修改。实际上很多的Angular测试功能都使用$provide.decorator()建立的。
+
+decorator()包括继承一个service缓存数据给localStorage，or wrapping a service in debugging or tracing wrappers for development purposes.
+
+例如我们之前的那个提供日志记录调用的githubService，我们不用去修改它，而是用decorator()来装饰它。
+
+decorator() 有2个参数：
+
+ * name(string)
+
+  这个参数是定义注入decorator的名字
+
+ * decoratorFn (function)
+
+ 当service被实例化时，我们将会被提供一个函数。这个函数被injector.invoke执行，将允许我们把service注入进去。
+
+ 为了 decorate 这个service，我们要注入 $delegate ，它就是原来service的实例。
+
+ 例如，在githubService 这个service里，我们给每次请求都加一个时间戳，我们可以这样做：
+
+<pre><code>
+
+var githubDecorator = function($delegate, $log) {
+
+  var events = function(path) {
+
+    var startedAt = new Date();
+
+    var events = $delegate.events(path);
+
+    var result = $delegate.locate();
+
+    events.always(function() {
+
+      $log.info("Fetching events" + " took " + (new Date() - startedAt) + "ms");
+
+      });
+
+      return result;
+
+    }
+
+  return { events: events };
+
+};
+
+angular.module('myApp').config(function($provide) {
+
+  $provide.decorator('githubService',githubDecorator);
+
+});
+</code></pre>
