@@ -37,4 +37,67 @@ ng-book:The Complete Book on AngularJS 提供了一些你需要了解AngularJS�
 
 ###关于读者
 
+此书写给那些从未使用过AngularJS、建立网页应用但是对JavaScript框架的使用很好奇的读者。你们或许具备HTML和CSS的知识，并且熟悉基础的JavaScrip(和其他的JavaScript框架）
+
+###此书机构
+此书涵盖基础知识，旨在让读者看很快利用AngularJS写动态网页应用。
+然后我们会讲解AngularJS如何工作，它与普通的JavaScript网页框架有什么不同。我们还会深入探讨AngularJS应用流程的基础的细节。最后，用我们的了解的所有知识建立相关的庞大的应用，
+###其他资源
+我们参考 了AngularJS网页的官方资料。官方的AngularJS文档是很大的资源，我们会经常用到。我们建议读者阅读下AngularJS API 文档，读者可以直接了解写AngularJS 应用的推荐方法。当然，它也提供最新的可用文档。
+
+###书中的表达约定
+
+在整本书中你将看到以下表达约定，代表不同信息：
+内嵌代码引用：&lt;h1>Hello&lt;/h1>
+
+代码块：
+<pre>
+<code>
+var App = angular.module('App', []);
+function FirstController($scope) {
+	$scope.data = "Hello";
+}
+</code>
+</pre>
+
+命令行的任何命令：
+$ ls -la
+
+在Chrome(我们主要开发用到的浏览器)的开发者控制台的任何命令：
+
+ &gt; var obj = {message: "hello"};
+
+
+重要词汇将用黑体字表示
+
+技巧提示将显示如下：
+
+Tip
+这是提示信息
+
+警告提示如下：
+这是警告信息
+
+
+错误信息显示如下：
+Error
+这是错误 信息
+
+重要的插图编号显示如下：
+INFO
+消息盒
+
+讨论话题显示如下：
+Discussion
+这是讨论话框
+
+
+###开发环境
+
+为了使用AngularJS写任何应用，首先我们需要一个良好的开发环境。在整本书中，我们的大部分时间将会花在两个地方：我们的文本编辑器和浏览器。
+
+我们推荐将文本编辑器作为你的编辑器，浏览器作为编写的浏览器。使用本书我们强烈推荐读者使用谷歌Chrome浏览器，作为开发工具它提供了最好的开发环境。
+
+我们只需要安装几个数据库,只需要karma和nodejs来进行测试。虽然不严格要求，但最好能够安装git。本书不会讲解如何安装NodeJS,请访问nodejs.org获取更多信息。虽然我们的大部分工作会在浏览器中完成，本书的部分内容会讲到建立RESTful APIs服务于我们的前端数据端点。
+
  
