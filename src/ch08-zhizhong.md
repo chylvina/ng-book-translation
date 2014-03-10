@@ -14,7 +14,7 @@ Angular为我们提供了几个内置的过滤器，以及一个简单的方法�
 
 > For instance, let’s say we want to capitalize our string.
 
-举个栗子，假设我们想将字符串变成大写字母。
+举个例子，假设我们想将字符串变成大写字母。
 
 > We can either change all the characters in a string to be capitalized, or we can use a filter.
 
@@ -116,7 +116,7 @@ $scope.name = $filter('lowercase')('Ari');
 
 > The date formatter also enables us to customize your date format to our own liking.
 
-**date** 格式化程序还能允许我们定制自己喜欢的日期格式。                 ？
+**date** 格式化程序还能允许我们定制自己喜欢的日期格式。
 
 > We can combine and chain together these format options to create one single date format, as well:
 
@@ -241,11 +241,11 @@ am/pm character: {{ today | date:'a' }} <!-- AM -->
 
 > If we want to filter on objects, we can use the the object filter notation as we discussed above.
 
-如果我们想要对对象进行过滤， 可以使用上面所讨论的对象过滤器。
+如果我们想过滤对象， 可以使用上面所讨论的对象过滤器。
 
 > For instance, if we have an array of people objects with a list of their favorite foods, we could filter them like so:
 
-举个例子，如果我们有一个数组，其中是人们喜欢的食物，我们可以像这样过滤它们：
+举个例子，如果我们有一个数组，是人们喜欢的食物列表，我们可以像这样过滤它们：
 
 ```
 
@@ -263,7 +263,7 @@ am/pm character: {{ today | date:'a' }} <!-- AM -->
 
 > We can also filter based on a function that we define (in this example, on the containing $scope object):
 
-我们也可以我们定义的函数来过滤（在这个例子中，包含 **$scope** 作用域对象）：
+我们也可以基于我们定义的函数来过滤（在这个例子中，该函数定义在 **$scope** 对象上）：
 
 ```
 {{ ['Ari', 'likes', 'to', 'travel'] | filter:isCapitalized }}
@@ -282,15 +282,29 @@ function(str) { return str[0] == str[0].toUpperCase(); }
 
 > We can also pass a second parameter into the filter method that will be used to determine if the expected value and the actual value should be considered a match.
 
-```
-We can also pass a second parameter into the filter method that will be used to determine if the expected value and the actual value should be considered a match.
-If the second parameter passed in is:
-true
-It runs a strict comparison of the two using angular.equals(expected, actual). false
-It looks for a case-insensitive substring match.
-function
-It runs the function and accepts an element if the result of the function is truthy.
-``` ?
+我们也可以在过滤器方法中传入第二个参数，用来指定
+
+> If the second parameter passed in is:
+
+如果传入的第二个参数是：
+
+> true
+
+> It runs a strict comparison of the two using angular.equals(expected, actual).
+
+使用angular.equals(expected, actual)进行了一个严格的检查。
+
+> false
+
+> It looks for a case-insensitive substring match.
+
+忽略大小写的字符串查找。
+
+> function
+
+> It runs the function and accepts an element if the result of the function is truthy.
+
+运行该函数，如果函数返回值为true就接受该元素。
 
 ### JSON JSON过滤器
 
@@ -309,11 +323,11 @@ It runs the function and accepts an element if the result of the function is tru
 
 > The limitTo filter creates a new array or string that contains only the specified number of elements, either taken from the beginning or end, depending on whether the value is positive or negative.
 
-limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束位置指定数量的元素,这取决于该值是正的还是负的。
+limitTo过滤器创建一个新的，仅包含从开始或结束位置，指定数量的元素数组或字符串,从开始还是结束这取决于该值是正的还是负的。
 
 > If the limit exceeds the value of the string, then the entire array or string will be returned.
 
-** 如果超过了字符串或数组的长度，整个字符串或数组将都会被返回。 **
+如果限定值超过了字符串或数组的长度，整个字符串或数组将都会被返回。
 
 > For instance, we can take the first three letters of a string:
 
@@ -335,7 +349,7 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 > We can do the same with an array. Here we’ll return only the first element of the array:
 
-我们可以对一个数组做同样的操作。这里将仅返回数组中的第一个元素：
+我们可以对一个数组做同样的操作。下面代码将仅返回数组中的第一个元素：
 
 ```
 {{ ['a', 'b', 'c', 'd', 'e', 'f'] | limitTo:1 }}
@@ -361,11 +375,11 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 > It can take a second parameter (optional) that will format the number to the specified number of decimal places (rounded).
 
-它可以通过第二个参数（可选），格式化数字的小数位数（四舍五入）。
+可以传入第二个参数（可选），格式化数字的小数位数（四舍五入）。
 
 > If a non-numeric character is given, it will return an empty string.
 
-** 如果传入的是一个非数字的字符，它将返回一个空的字符串。 **
+如果传入的是一个非数字的字符，它将返回一个空的字符串。
 
 ```
 {{ 123456789 | number }}
@@ -378,7 +392,7 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 > The orderBy filter orders the specific array using an expression.
 
-**orderBy** 过滤器使用一个表达式筛选出一个特定的数组。
+**orderBy** 过滤器使用一个表达式对一个特定的数组排序。
 
 > The orderBy function can take two parameters: The first one is required, while the second is optional.
 
@@ -386,7 +400,7 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 > The first parameter is the predicate used to determine the order of the sorted array.
 
-第一个参数是用于确定排序后的数组中顺序的谓词。
+第一个参数是用于确定排序后的数组中顺序。
 
 > If the first parameter passed in is a(n):
 
@@ -396,7 +410,9 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 **function** 函数
 
-> It will use the function as the getter function for the object.?
+> It will use the function as the getter function for the object.
+
+该函数会用来作为获取排序对象的排序关键词的getter方法。
 
 **string** 字符串
 
@@ -406,7 +422,7 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 > We can pass either a + or a - to force the sort in ascending or descending order.
 
-我们可以使用一个 **+** 或者 一个 **-** 强制按升序或降序排序。
+我们可以再使用一个 **+** 或者 一个 **-** 强制按升序或降序排序。
 
 **array** 数组
 
@@ -414,7 +430,12 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 它将在排序表达式中使用元素作为谓词。
 
-> It will use the first predicate for every element that is not strictly equal to the expression result.     ？
+> It will use the first predicate for every element that is not strictly equal to the expression result.
+
+> 官方文档：Array: An array of function or string predicates. The first predicate in the array is used for sorting, but when two items are equivalent, the next predicate is used.
+
+官方文档：Array： 一个函数或字符串的谓词数组。数组中的第一个谓词被用来排序，但当两个排序对象相等时，会使用下一个谓词进行比较。
+
 
 > The second parameter controls the sort order of the array (either reversed or not).
 
@@ -453,7 +474,7 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 > For instance, reverse-sorting the previous object, we simply add the second parameter as true:
 
-举个例子，反向排序前面的对象，我们只需要简单的设置第二个参数为true:
+举个例子，反向排序前面的对象，我们只需要直接的设置第二个参数为true:
 
 ```
 {{ [{
@@ -478,7 +499,7 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 > The uppercase filter simply uppercases the entire string:
 
-**uppercase** 过滤器简单的将字符串全部变成大写：
+**uppercase** 过滤器直接的将字符串全部变成大写：
 
 ```
 {{ "San Francisco is very cloudy" | uppercase }}
