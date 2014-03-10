@@ -18,7 +18,7 @@ Angular为我们提供了几个内置的过滤器，以及一个简单的方法�
 
 > We can either change all the characters in a string to be capitalized, or we can use a filter.
 
-我们可以将字符串中的所有字符大写，或者我们可以使用一个过滤器。
+我们可以将字符串中的所有字符变成大写，或者我们可以使用一个过滤器。
 
 ```
 {{ name | uppercase }}
@@ -55,7 +55,7 @@ $scope.name = $filter('lowercase')('Ari');
 
 > We can use multiple filters at the same time by using two or more pipes.
 
-我们可以通过2个或更多的 **管道符号** 同时使用多个过滤器。
+我们可以通过2个或更多的 **管道符号** 来同时使用多个过滤器。
 
 > We’ll see such an example in a minute when we build a custom filter.
 
@@ -77,11 +77,11 @@ $scope.name = $filter('lowercase')('Ari');
 
 > Currency gives us the option of displaying a currency symbol or identifier.
 
-**Currency**过滤器给了我们显示货币标记或标识的选择。
+**Currency**过滤器给我们提供了货币显示符号或标识的可选参数。
 
 > The default currency option is that of the current locale; however, we can pass in a currency to display.
 
-默认是显示当前语言环境的货币选项；然而，我们可以通过一个货币显示。？
+默认的参数配置是显示当前语言环境的货币符号；然而，我们可以通过传入一个货币符号来改变显示。
 
 ### Date 日期过滤器
 
@@ -95,7 +95,7 @@ $scope.name = $filter('lowercase')('Ari');
 
 > If no date format is passed, then it defaults to showing mediumDate (as you can see below).
 
-如果没有匹配的日期格式，会默认显示为 **mediumDate** (如下文所见).
+如果没有传入日期格式的参数，会默认显示为 **mediumDate** (如下文所见).
 
 > Here are the built-in localizable formats:
 
@@ -116,7 +116,7 @@ $scope.name = $filter('lowercase')('Ari');
 
 > The date formatter also enables us to customize your date format to our own liking.
 
-**date** 过滤器还能依据我们自己的喜好定制你自己的日期格式。                 ？
+**date** 格式化程序还能允许我们定制自己喜欢的日期格式。                 ？
 
 > We can combine and chain together these format options to create one single date format, as well:
 
@@ -184,15 +184,15 @@ am/pm character: {{ today | date:'a' }} <!-- AM -->
 
 > This filter is generally used as a way to filter out items for display. For instance,
 
-该过滤器通常用于作为一种方法来筛选出要显示的条目。比如，
+该过滤器通常用于作为一种筛选出要显示条目的方法。比如，
 
 > when using client-side searching, we can filter out items from an array immediately.
 
-使用客户端搜索的时候，我们可以从一个数组中立刻筛选出匹配的结果。
+在客户端进行本地搜索的时候，我们可以从一个数组中立刻筛选出匹配的结果。
 
 > The filter method takes a string, object, or function that it will run to select or reject array elements.
 
-过滤器方法接受一个 **string**, **object** ,或者一个将运行选择或剔除数组元素的 **function** 作为参数。
+过滤器方法接受一个 **string**, **object** ,或者一个运行选择或剔除数组元素的 **function** 作为参数。
 
 > If the first parameter passed in is a:
 
@@ -216,7 +216,7 @@ am/pm character: {{ today | date:'a' }} <!-- AM -->
 
 > It will compare objects that have a property name that matches,as with the simple substring match if only a string is passed in.
 
-如果只有一个字符串传入，过滤器会将对象的属性名与传入的字符串进行比较。 ？
+过滤器只会比较传入对象的属性名，这就像只传入一个字符串进行部分字符比较。
 
 > If we want to match against all properties, we can use the $ as the key.
 
@@ -228,11 +228,11 @@ am/pm character: {{ today | date:'a' }} <!-- AM -->
 
 > It will run the function over each element of the array, and the results that return as non-falsy will appear in the new array.
 
-他会对数组中的每一个元素运行该方法，并将方法中返回值为真的元素添加进一个新的数组并返回该数组。
+它会对数组中的每一个元素运行该方法，并将方法中返回值为真的元素添加进一个新的数组并返回该数组。
 
 > For instance, selecting all of the words that have the letter e in them, we could run our filter like so:
 
-举个栗子，在下面这些单词中，选出所有包含字母e的单词，我们可以这样使用过滤器：
+举个例子，在下面这些单词中，选出所有包含字母e的单词，我们可以这样使用过滤器：
 
 ```
 {{ ['Ari', 'Lerner', 'Likes', 'To', 'Eat', 'Pizza'] | filter:'e' }}
@@ -245,7 +245,7 @@ am/pm character: {{ today | date:'a' }} <!-- AM -->
 
 > For instance, if we have an array of people objects with a list of their favorite foods, we could filter them like so:
 
-举个栗子，如果我们有一个数组，其中是人们喜欢的食物，我们可以像这样过滤它们：
+举个例子，如果我们有一个数组，其中是人们喜欢的食物，我们可以像这样过滤它们：
 
 ```
 
@@ -263,7 +263,7 @@ am/pm character: {{ today | date:'a' }} <!-- AM -->
 
 > We can also filter based on a function that we define (in this example, on the containing $scope object):
 
-我们也可以我们定义的函数来过滤（在这个栗子中，包含 **$scope** 作用域对象）：
+我们也可以我们定义的函数来过滤（在这个例子中，包含 **$scope** 作用域对象）：
 
 ```
 {{ ['Ari', 'likes', 'to', 'travel'] | filter:isCapitalized }}
@@ -317,7 +317,7 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 > For instance, we can take the first three letters of a string:
 
-举个栗子，我们想要字符串中的前三个字符：
+举个例子，我们想要字符串中的前三个字符：
 
 ```
 {{ San Francisco is very cloudy | limitTo:3 }}
@@ -422,7 +422,7 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 > For instance, let’s sort an array of objects by their name.
 
-举个栗子，让我们以name来对一个对象数组进行排序。
+举个例子，让我们以name来对一个对象数组进行排序。
 
 > Say we have an array of people, we can order the array of objects with the name value:
 
@@ -453,7 +453,7 @@ limitTo过滤器创建一个新的数组或字符串,仅包含从开始或结束
 
 > For instance, reverse-sorting the previous object, we simply add the second parameter as true:
 
-举个栗子，反向排序前面的对象，我们只需要简单的设置第二个参数为true:
+举个例子，反向排序前面的对象，我们只需要简单的设置第二个参数为true:
 
 ```
 {{ [{
@@ -582,13 +582,119 @@ AngularJS对表单验证，支持使用HTML5的验证标签和AngularJS提供的
 
 > To use form validations, we first must ensure that the form has a name associated with it, like in the above example.
 
-使用表单验证，我们首先要确保该表单有一个名字与之关联，就像上面栗子中的写法。
+使用表单验证，我们首先要确保该表单有一个名字与之关联，就像上面例子中的写法。
 
 > All input fields can validate against some basic validations, like minimum length, maximum length, etc. These are all available on the new HTML5 attributes of a form.
 
-所有的输入域都可以使用HTML5中提供的新的表单验证属性，来做一些基础的验证，比如最小长度，最大长度等等。
+所有的input都可以使用HTML5中提供的新的表单验证属性，来做一些基础的验证，比如最小长度，最大长度等等。
 
 > It is usually a great idea to use the novalidate flag on the form element, as it prevents the browser from natively validating the form.
+
+在form元素上使用novalidate标识，防止浏览器进行本地验证是一个好主意。
+
+> Let’s look at all the validation options we have that we can place on an input field:
+
+让我们来一起看一下可以使用在input上的验证选项：
+
+#### Required    必填项
+
+> To validate that a form input has been filled out, we simply add the HTML5 tag, required, to the input field:
+
+为了验证表单中的input已经被填写，我们只是简单的将HTML的required标签添加到这个input上：
+
+```
+<input type="text" required />
+```
+
+#### Minimum Length  最小长度
+
+> To validate that a form input input is at least a certain {number} of characters, we add the AngularJS directive ng-minlength="{number}" to the input field:
+
+为了验证表单中的input需要输入的最少字符数量，我们向input中添加AngularJS的指令ng-minlength="{number}":
+
+```
+<input type="text" ng-minlength=5 />
+```
+
+#### Maximum Length  最大长度
+
+> To validate that a form input is equal to or less than a number of characters, we can add the AngularJS directive ng-maxlength="{number}":
+
+为了验证表单中input能输入的多大字符数量，我们向input中添加AngularJS的指令ng-maxlength="{number}":
+
+```
+<input type="text" ng-maxlength=20 />
+```
+
+#### Matches a Pattern   正则表达式
+
+> To ensure that an input matches a regex, we can use ng-pattern="/PATTERN/":
+
+为了确保input的输入符合正则表达式，我们可以使用ng-pattern="/PATTERN/":
+
+```
+<input type="text" ng-pattern="/a-zA-Z/" />
+```
+
+#### Email   邮箱地址
+
+> To validate an email address in an input field, we simply set the input type to email, like so:
+
+为了验证input中的邮箱地址，我们可以简单的将input的type属性设置成email，比如：
+
+```
+<input type="email" name="email" ng-model="user.email" />
+```
+
+#### Number  数字
+
+> To validate an input field has a number, we set the input type to number:
+
+为了验证input只接受输入数字，我们将input的type属性设置成number：
+
+```
+<input type="number" name="age" ng-model="user.age" />
+```
+
+#### URL
+
+> To validate that an input represents a URL, set the input type to url:
+
+为了验证input中的输入表示一个URL地址，将input的type属性设置成url：
+
+```
+<input type="url" name="homepage" ng-model="user.facebook_url" />
+```
+
+### Custom Validations  自定义验证选项
+
+> AngularJS makes it very easy to add our own validations, as well, by using directives. For instance, let’s say that we want to validate that our username is available in the database.
+
+AngularJS可以很容易的添加属于我们自己的验证选项，并通过指令的形式使用它们。举个例子，假如我们想验证下username在数据库中是否可用。
+
+```
+angular.module('validationExample', []) .directive('ensureUnique', function($http) {
+return {
+require: 'ngModel',
+link: function(scope, ele, attrs, c) {
+scope.$watch(attrs.ngModel, function() { $http({
+          method: 'POST',
+          url: '/api/check/' + attrs.ensureUnique,
+          data: {'field': attrs.ensureUnique}
+}).success(function(data,status,headers,cfg) { c.$setValidity('unique', data.isUnique);
+}).error(function(data,status,headers,cfg) { c.$setValidity('unique', false);
+}); });
+} }
+});
+```
+
+
+
+
+
+
+
+
 
 
 
