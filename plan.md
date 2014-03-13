@@ -21,11 +21,11 @@ ch17 XHR in Practice                       | 16     | liuqi           |
 ch18 Promises                              | 8      | liuqi           |
 ch19 Server Communication                  | 57     |                 |
 ch20 Testing                               | 77     | taotao          |
-ch21 Events                                | 4      |                 |
+ch21 Events                                | 4      | zhongwei        |
 ch22 Architecture                          | 6      | yeqin           |
 ch23 Angular Animation                     | 38     |                 |
 ch24 The Digest Loop and $apply            | 9      | xiongliang      |
-ch25 Demystifying Angular                  | 2      |                 |
+ch25 Demystifying Angular                  | 2      | zhongwei        |
 ch26 Essential AngularJS Extensions        | 14     |                 |
 ch27 Mobile Apps                           | 17     |                 |
 ch28 Localization                          | 15     |                 |
