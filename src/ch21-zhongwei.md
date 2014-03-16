@@ -6,3 +6,32 @@
 Angular的scope本质上是有继承关系的。通过scope的父子层级关系可以很方便的进行通信。通常情况下，如果不考虑他们在父子树状层级上的关系，scope之间是不共享变量的，并且他们通常都处理相互不同的业务逻辑。  
 因此，我们只能通过事件的派发去完成通信，向上传播或者向下广播。  
 ###What are Events
+就像浏览器响应浏览器的内置事件如鼠标点击或者页面滚动，angular也会响应angular的内置事件，这种方式的好处就是可以跨嵌套的组件之间进行通信。  
+
+注意，Angular的事件系统是不能够和浏览器的事件系统共享事件的。也就是说Angular的事件系统只能监听Angular中的事件，不能够监听DOM事件。  
+我们可以将事件想象成在应用中传递的信息片段，而这些信息片段都是在应用内部产生的。  
+###Event Propagation
+因为scope是有层级关系的，所以我们可以延着scope的作用链进行向上或者向下传播事件。通常情况下我们会根据产生事件的scope的位置来确定传播事件的类型。假如我们想要通知整个事件系统（所有scope都可以接收处理这个事件)，我们需要从$rootScope向下broadcast事件。那么另一方面,如果我们想要调用全局模块的代码，我们再也不需要从更高层级的scope（例如$rootScope）进行调用，我们只需要向上传递一个事件就可以了。  
+<code>
+在全局的层级需要限制事件监听的listener数量，因为事件机制虽然很强大，但是会增加整个程序的复杂性。
+</code>
+例如，当我在更新路由的时候，全局的state需要知晓当前的app处在那个页面，此时可以采用向上传播事件；如果一个tab directive向tab下的pane中的directive的时候，我们需要向下派发事件。  
+###Bubbling an Event Up with $emit
+沿着scope作用链向上派发事件的时候（从子scope向父scope），需要采用$emit（）方法。
+<pre>
+<code>
+    // 用户登录派发事件
+    // 参数为当前登录的用户
+    scope.$emit('user:logged_in',scope.user);
+</code>
+</pre>
+调用了$emit()方法，事件会从子scope冒泡到其父scope，在这个派发事件的scope之上的所有的scope都可以接收到事件。  
+
+//（?）当我们想和应用的其他部分通信的时候我们可以采用$emit(),如果我们想和$rootScope进行通信的时候，我们此时需要用$emit()方法派发事件。  
+$emit()方法可以接收两个参数：
+#####name（string）
+要派发的事件的名字
+####args(set)
+传递进当前事件的listener的一组参数对象，$emit()方法返回一个时间对象（查看event object部分获取更多的信息）。从任意一个listener中产生的exception都会被$exceptionHandler service捕获处理。  
+
+### Sending an Event Down with $broadcast 
